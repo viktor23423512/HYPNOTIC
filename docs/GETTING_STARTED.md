@@ -4,9 +4,9 @@
 
 - A homebrew-enabled PS4 with a working homebrew PKG installer.
 - USB storage containing supported music.
-- A HYPNOTIC package from [Releases](https://github.com/viktor23423512/HYPNOTIC/releases), once a public release is available.
+- A HYPNOTIC package from [Releases](https://github.com/viktor23423512/HYPNOTIC/releases).
 
-Builds 0.76 and 0.77 are prepared; public package uploads are pending. Older firmware/GoldHEN support remains unverified; a successful compile is not a compatibility guarantee.
+Builds 0.76 and 0.77 are available as development pre-releases. Older firmware/GoldHEN support remains unverified; a successful compile is not a compatibility guarantee.
 
 ## Music on USB
 

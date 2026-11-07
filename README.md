@@ -2,15 +2,29 @@
 
 PS4 homebrew music player and audio visualizer.
 
-![MilkDrop presets running on PS4](docs/media/milkdrop-slideshow.gif)
+## Visualizers
 
-*PS4 captures: Whirlfire, Each Child No Laptop, and Mirrored Glowsticks. Cropped slideshow; these are not continuous gameplay recordings.*
+| Lasershow | Starz in Milk | Machine Code |
+| :---: | :---: | :---: |
+| ![Lasershow animation](docs/media/lasershow.gif) | ![Starz in Milk animation](docs/media/starz-in-milk.gif) | ![Machine Code animation](docs/media/machine-code.gif) |
+
+Short desktop projectM previews of included MilkDrop presets. PS4 appearance and performance can differ.
+
+## App interface
+
+| Music browser | Visualizer browser |
+| :---: | :---: |
+| [![Music browser](docs/media/app-music.png)](docs/media/app-music.png) | [![Visualizer browser](docs/media/app-visualizers.png)](docs/media/app-visualizers.png) |
+
+Current app UI renders with sample music data.
 
 ## Downloads
 
 [Download releases](https://github.com/viktor23423512/HYPNOTIC/releases)
 
-Builds 0.76 and 0.77 are prepared; their public package uploads are pending. Download the `.pkg` from a published release’s Assets section. Close HYPNOTIC before installing an update.
+[0.77](https://github.com/viktor23423512/HYPNOTIC/releases/tag/v0.77) · [0.76](https://github.com/viktor23423512/HYPNOTIC/releases/tag/v0.76)
+
+Development pre-releases. Download the `.pkg` from the release’s Assets section. Close HYPNOTIC before installing an update.
 
 ## Features
 
