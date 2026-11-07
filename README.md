@@ -1,2 +1,2 @@
 # HYPNOTIC
-Music player and visualizer for PS4
+ Homebrew Music player and visualizer for PS4
