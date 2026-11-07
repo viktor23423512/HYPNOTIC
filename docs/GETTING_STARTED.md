@@ -6,7 +6,7 @@
 - USB storage containing supported music.
 - A HYPNOTIC package from [Releases](https://github.com/viktor23423512/HYPNOTIC/releases), once a public release is available.
 
-No public PKG has been uploaded yet. Build 0.75 is a development build. Older firmware/GoldHEN support remains unverified; a successful compile is not a compatibility guarantee.
+Builds 0.76 and 0.77 are prepared; public package uploads are pending. Older firmware/GoldHEN support remains unverified; a successful compile is not a compatibility guarantee.
 
 ## Music on USB
 
@@ -23,7 +23,7 @@ USB drive/
     └── presets/
 ```
 
-Open Music with OPTIONS. Left/right switches All Music and USB tabs; up/down selects an item. X opens a folder or plays a track. Circle goes back. Touchpad searches filenames across the USB library. L1/R1 pages through six rows.
+Open Music with a right touchpad click. Left/right switches All Music and USB tabs; up/down selects an item. X opens a folder or plays a track. Circle goes back. Left touchpad click or L3 in the browser searches filenames across the USB library. L1/R1 pages through six rows.
 
 Folders and drives without supported music are hidden. Scanning currently happens at startup, with a limit of 4,096 tracks, 1,024 folders, and 12 nested folder levels. Reopen the app after changing your music files.
 
@@ -40,7 +40,7 @@ Supported inputs are mono or stereo at 8–48 kHz. Playback is converted to 48 k
 
 ## Visualizers
 
-Press Triangle to open Visualizers. Left/right changes tabs; up/down selects a preset. Browsing does not change the current visualizer: press X to apply it. R3 adds/removes a favorite; Touchpad searches. Favorites and Recent are saved across relaunch.
+Press Triangle to open Visualizers. Left/right changes tabs; up/down selects a preset. Browsing does not change the current visualizer: press X to apply it. R3 adds/removes a favorite; left touchpad click or L3 searches. Favorites and Recent are saved across relaunch.
 
 The AUTO button in the playback HUD opens a preset-cycle interval menu. Choose 5 seconds to 10 minutes and press X to apply. Cycling pauses while playback is paused or menus are open. Automatic changes keep a hidden HUD hidden.
 
@@ -52,11 +52,11 @@ Some presets need additional image textures. Keep the files supplied with a pres
 
 HYPNOTIC's renderer supports a growing subset of MilkDrop. A preset loading successfully does not guarantee identical visuals or 60 FPS. Keep the original preset author's credits and respect their redistribution terms.
 
-## Headset microphone test
+## Headset microphone mode
 
-Square in Music opens the microphone test. Connect the headset to a controller paired directly with the PS4 and confirm that the PS4 detects it under Audio Devices. Earbuds connected to a controller attached only to the PC running Remote Play are not automatically a PS4 microphone input.
+Square in Music opens Mic Mode. Settings → Mic Test provides the input meter and diagnostics. Connect the headset to a controller paired directly with the PS4 and confirm that the PS4 detects it under Audio Devices. Earbuds connected to a controller attached only to the PC running Remote Play are not automatically a PS4 microphone input.
 
-Microphone support remains experimental. The test captures input for visualization; it does not record or play the microphone through speakers.
+Microphone input has been confirmed working on the development console. Mic Mode captures input for visualization; it does not record or play the microphone through speakers.
 
 ## Quality and performance
 

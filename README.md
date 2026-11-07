@@ -1,105 +1,45 @@
-<p align="center">
-  <img src="docs/media/hypnotic.png" width="144" alt="HYPNOTIC neon waveform play icon">
-</p>
+# HYPNOTIC
 
-<h1 align="center">HYPNOTIC</h1>
-<p align="center"><strong>A standalone homebrew music player and audio-reactive visualizer for PS4.</strong></p>
+PS4 homebrew music player and audio visualizer.
 
-<p align="center">
-  <a href="#downloads">Downloads</a> · <a href="docs/GETTING_STARTED.md">Getting started</a> · <a href="docs/CONTROLS.md">Controls</a> · <a href="https://github.com/viktor23423512/HYPNOTIC/issues">Report a bug</a>
-</p>
+![MilkDrop presets running on PS4](docs/media/milkdrop-slideshow.gif)
 
----
-
-## What is HYPNOTIC?
-
-HYPNOTIC plays music from USB storage and turns it into fullscreen, music-reactive visuals. Features: folder-based music browser, a playback HUD, 100+ built-in visualizers, and experimental MilkDrop preset support.
-
-**Status: in development.** The current development build is **0.75**. Its new Cube Orbit EQ and settings menus still need PS4 testing. Earlier player and visualizer builds have been tested on PS4; this is not a finished stable release.
-
-## Features
-
-- **USB music playback:** WAV, MP3, FLAC, and Ogg Vorbis, with automatic sample-rate conversion for supported files.
-- **Music browsing:** All Music and USB drive tabs, folders, filename search, track durations, and held-button scrolling.
-- **Playback controls:** pause/resume fades, previous/next track, pressure-sensitive scrubbing, shuffle, and repeat.
-- **A clean playback HUD:** track and visualizer names, progress bar, transport buttons, and automatic hiding during playback.
-- **Visualizer selection:** folder tabs, saved Favorites and Recent lists, and timed automatic preset cycling.
-- **Ten built-in visualizers** alongside experimental MilkDrop preset imports.
-- **1080p by default.** Performance depends on the preset; complex MilkDrop effects can run below 60 FPS.
-
-## 100+ preloaded visualizers
-
-
-### Development previews
-
-These images are captured from the production UI/geometry render tests, rather than photographs of the PS4 output. Final console appearance and performance may differ.
-
-**Cube Orbit EQ**
-
-![Cube Orbit EQ development preview](docs/media/cube-orbit.png)
-
-**Music browser and playback HUD**
-
-![Music browser and playback HUD development preview](docs/media/music-browser.png)
-
-## MilkDrop presets
-
-HYPNOTIC has an experimental native MilkDrop renderer using projectM's equation parser and evaluator, with a PS4 graphics adapter. The development build contains a curated selection of 130 presets across ten categories.
-
-You can also add `.milk` files under:
-
-```text
-USB drive/
-└── HYPNOTIC/
-    └── presets/
-        └── your-preset.milk
-```
-
-Open **Visualizers → Imported**, then press **□** to rescan. Compatibility varies: unsupported features display an error while retaining the current preset. Full compatibility with every MilkDrop preset is not claimed. [Import guide](docs/GETTING_STARTED.md#importing-milkdrop-presets)
+*PS4 captures: Whirlfire, Each Child No Laptop, and Mirrored Glowsticks. Cropped slideshow; these are not continuous gameplay recordings.*
 
 ## Downloads
 
-**No public PKG release has been uploaded yet.** Public downloads will appear in [GitHub Releases](https://github.com/viktor23423512/HYPNOTIC/releases) when ready.
+[Download releases](https://github.com/viktor23423512/HYPNOTIC/releases)
 
-The repository currently serves as the project page, documentation, and issue tracker.
+Builds 0.76 and 0.77 are prepared; their public package uploads are pending. Download the `.pkg` from a published release’s Assets section. Close HYPNOTIC before installing an update.
 
-## Getting started
+## Features
 
-HYPNOTIC requires a homebrew-enabled PS4 capable of launching homebrew PKGs. Compatibility with older firmware and GoldHEN versions has not been verified. There is no confirmed minimum firmware version yet.
+- USB playback: WAV, MP3, FLAC and Ogg Vorbis; mono/stereo, 8–48 kHz input.
+- Folder browsing, filename search, shuffle, repeat and pressure-sensitive seeking.
+- 10 built-in visualizers and 130 curated MilkDrop presets; additional `.milk` imports supported with compatibility limits.
+- Mic Mode, saved visualizer Favorites/Recent, automatic preset cycling, themes and fonts.
+- 1080p default. Performance varies by preset; complex effects can run below 60 FPS.
 
-When a public package is available:
+## Requirements
 
-1. Download the PKG from this repository's Releases page.
-2. Close HYPNOTIC before installing or updating it with your package installer.
-3. Put supported music on USB storage, connect it before launch, and open HYPNOTIC.
-4. Choose a song in Music, then press **△** to browse visualizers and **X** to apply one.
+A homebrew-enabled PS4 with a working PKG installer. Compatibility with older firmware/GoldHEN versions is unverified.
 
-[Full setup and supported formats](docs/GETTING_STARTED.md)
+Connect USB music before launching. To import presets, place `.milk` files in `HYPNOTIC/presets` on USB, then open **Visualizers → Imported → □ Rescan**. Some presets require additional textures or unsupported features.
 
-## Main controls
+## Controls
 
 | Control | Action |
 | --- | --- |
-| OPTIONS | Open / close Music |
-| △ | Open / close Visualizers |
-| D-pad | Browse rows and switch tabs; hold to scroll |
-| X | Open / play / apply the selected item; activate the selected HUD button |
-| ○ | Back / close |
-| L2 / R2 | Scrub backward / forward; more pressure moves faster |
-| L1 / R1 | Cycle presets while viewing; page tracks in Music |
-| Touchpad | Search in the music or visualizer browser |
-| R3 | Toggle a favorite in the visualizer selector |
-| L3 | Pin / unpin the playback HUD |
-| □ | Context controls, including Cymatics and Cube Orbit settings |
+| Touchpad right / left click | Music / Search |
+| OPTIONS | Settings, themes, fonts, credits and Mic Test |
+| △ | Visualizer browser |
+| D-pad / X / ○ | Browse / apply or play / back |
+| L1 / R1 | Cycle presets; page tracks in Music |
+| L2 / R2 | Pressure-sensitive backward / forward seek |
+| □ in Music | Mic Mode |
+| R3 in Visualizers | Favorite |
+| L3 | Pin HUD; Search inside browsers |
 
-[Complete controls and settings](docs/CONTROLS.md)
+If Remote Play does not supply touch coordinates, touchpad click opens Music; use L3 in a browser for Search.
 
-## Feedback
-
-Found a problem? [Open an issue](https://github.com/viktor23423512/HYPNOTIC/issues/new/choose) with the app version, PS4 model, firmware/GoldHEN version, preset or audio format, and steps to reproduce it. Screenshots help; remove personal information before sharing logs.
-
-## Credits
-
-HYPNOTIC builds on work by OpenOrbis and the PS4 homebrew community, Ryan Geiss and projectM contributors, the Cream of the Crop preset artists, OpenGNM/Mesa, glslang, HLSLParser, dr_libs, stb, and libjbc.
-
-[Credits and attribution](docs/CREDITS.md) · [Development plans](docs/ROADMAP.md)
+[Setup](docs/GETTING_STARTED.md) · [Full controls](docs/CONTROLS.md) · [Credits](docs/CREDITS.md) · [Report a bug](https://github.com/viktor23423512/HYPNOTIC/issues/new/choose)
