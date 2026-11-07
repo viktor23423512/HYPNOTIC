@@ -4,7 +4,6 @@
 
 <h1 align="center">HYPNOTIC</h1>
 <p align="center"><strong>A standalone homebrew music player and audio-reactive visualizer for PS4.</strong></p>
-<p align="center">Your music. Neon waveforms, digital rain, storm clouds, and more.</p>
 
 <p align="center">
   <a href="#downloads">Downloads</a> · <a href="docs/GETTING_STARTED.md">Getting started</a> · <a href="docs/CONTROLS.md">Controls</a> · <a href="https://github.com/viktor23423512/HYPNOTIC/issues">Report a bug</a>
@@ -14,7 +13,7 @@
 
 ## What is HYPNOTIC?
 
-HYPNOTIC plays music from USB storage and turns it into fullscreen, music-reactive visuals. Built for a controller, it brings together a folder-based music browser, a playback HUD, built-in visualizers, and experimental MilkDrop preset support.
+HYPNOTIC plays music from USB storage and turns it into fullscreen, music-reactive visuals. Features: folder-based music browser, a playback HUD, 100+ built-in visualizers, and experimental MilkDrop preset support.
 
 **Status: in development.** The current development build is **0.75**. Its new Cube Orbit EQ and settings menus still need PS4 testing. Earlier player and visualizer builds have been tested on PS4; this is not a finished stable release.
 
@@ -28,20 +27,8 @@ HYPNOTIC plays music from USB storage and turns it into fullscreen, music-reacti
 - **Ten built-in visualizers** alongside experimental MilkDrop preset imports.
 - **1080p by default.** Performance depends on the preset; complex MilkDrop effects can run below 60 FPS.
 
-## Built-in visualizers
+## 100+ preloaded visualizers
 
-| Visualizer | Style |
-| --- | --- |
-| Waveform | A glowing waveform driven by the music |
-| Neon Halo | A reactive radial neon halo |
-| Wormhole | A twisting, psychedelic tunnel |
-| Kaleidoscope | Mirrored, evolving patterns |
-| Matrix EQ | Katakana EQ columns with independently falling characters |
-| Cymatics Sand | Sand patterns inspired by standing waves |
-| Oscilloscope | Stereo scope modes and glowing trails |
-| Liquid Aura | Flowing, layered colour |
-| Storm Sky | Clouds, music-triggered lightning, and optional rain |
-| Cube Orbit EQ | Rotating radial cube bars with breakaway fragments — new in 0.75 |
 
 ### Development previews
 
