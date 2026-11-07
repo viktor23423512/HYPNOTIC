@@ -1,0 +1,11 @@
+# Keep local development artifacts out of this project-page repository.
+*.pkg
+*.elf
+*.oelf
+*.prx
+*.pdb
+*.obj
+*.log
+__pycache__/
+.DS_Store
+Thumbs.db

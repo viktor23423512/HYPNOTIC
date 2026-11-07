@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a playback, visualizer, installation or interface problem.
+title: "[Bug] "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: HYPNOTIC version
+      placeholder: e.g. 0.75
+    validations:
+      required: true
+  - type: input
+    id: console
+    attributes:
+      label: PS4 model, firmware and GoldHEN version
+      placeholder: Include whether you use Remote Play
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include what you expected and the steps to reproduce it.
+    validations:
+      required: true
+  - type: textarea
+    id: media
+    attributes:
+      label: Track or preset details
+      description: Preset name, audio format/sample rate, USB layout, and any on-screen error.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or logs
+      description: Remove personal details and network addresses before sharing. Do not upload copyrighted songs.
