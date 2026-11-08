@@ -16,7 +16,6 @@ Short desktop projectM previews of included MilkDrop presets. PS4 appearance and
 | :---: | :---: |
 | [![Music browser](docs/media/app-music.png)](docs/media/app-music.png) | [![Visualizer browser](docs/media/app-visualizers.png)](docs/media/app-visualizers.png) |
 
-Current app UI renders with sample music data.
 
 ## Downloads
 
