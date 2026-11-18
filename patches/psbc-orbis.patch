@@ -1,0 +1,294 @@
+diff --git a/Makefile.orbis b/Makefile.orbis
+index 8c44223..62704df 100644
+--- a/Makefile.orbis
++++ b/Makefile.orbis
+@@ -41,7 +41,7 @@ UTIL_SRCS := $(filter-out \
+ 	src/util/mesa_cache_db_multipart.c \
+ 	,$(UTIL_SRCS))
+ UTIL_OBJS := $(patsubst %.c,%.orbis.o,$(filter %.c,$(UTIL_SRCS))) $(patsubst %.cpp,%.orbis.cpp.o,$(filter %.cpp,$(UTIL_SRCS)))
+-UTIL_FORMAT_SRCS := $(filter-out src/util/format/u_format_s3tc.c,$(UTIL_FORMAT_SRCS))
++# HYPNOTIC: include S3TC helpers referenced by the generated format table.
+ UTIL_FORMAT_OBJS := $(UTIL_FORMAT_SRCS:.c=.orbis.o)
+ COMPILER_COMMON_OBJS := $(COMPILER_COMMON_SRCS:.c=.orbis.o)
+ BLAKE3_SRCS := $(filter-out src/util/blake3/blake3_neon.c,$(BLAKE3_SRCS))
+diff --git a/config.orbis.mak b/config.orbis.mak
+index 621e256..b80aabf 100644
+--- a/config.orbis.mak
++++ b/config.orbis.mak
+@@ -78,3 +78,10 @@ CXXFLAGS=-std=c++17 -Wall -O2 -g $(ARCHFLAGS) $(SHARED_FLAGS) \
+          -DHAVE_SYSCONF=1 \
+          -include strings.h
+ LDFLAGS=-lm
++
++# HYPNOTIC: private Mesa C11 symbols avoid collisions with SDK libc.
++CFLAGS += -ffunction-sections -fdata-sections -Dcall_once=psbc_call_once -Dthrd_create=psbc_thrd_create
++CXXFLAGS += -ffunction-sections -fdata-sections -Dcall_once=psbc_call_once -Dthrd_create=psbc_thrd_create
++
++# Portable BLAKE3 path; architecture-specific assembly is not part of this build.
++CFLAGS += -DBLAKE3_NO_SSE2 -DBLAKE3_NO_SSE41 -DBLAKE3_NO_AVX2 -DBLAKE3_NO_AVX512
+diff --git a/libpsbc/psbc_compile.c b/libpsbc/psbc_compile.c
+index bacbc6a..d7eb51f 100644
+--- a/libpsbc/psbc_compile.c
++++ b/libpsbc/psbc_compile.c
+@@ -32,6 +32,7 @@
+ #include "radv_shader_info.h"
+ #include "radv_aco_shader_info.h"
+ #include "radv_pipeline.h"
++#include "radv_descriptor_set.h"
+ #include "sid.h"
+ 
+ #include "crc32_sb.h"
+@@ -850,7 +851,7 @@ static PsbcResult buildshaderbinary(
+ 
+ /* === GPU target setup === */
+ 
+-static void setup_ac_info(struct ac_compiler_info* ac_info, enum amd_gfx_level gfxlevel) {
++static void setup_ac_info(struct ac_compiler_info* ac_info, enum amd_gfx_level gfxlevel, enum radeon_family family) {
+     ac_info->gfx_level = gfxlevel;
+ 
+     if (gfxlevel >= GFX10_3) {
+@@ -878,30 +879,32 @@ static void setup_ac_info(struct ac_compiler_info* ac_info, enum amd_gfx_level g
+         ac_info->max_vgpr_alloc = 256;
+         ac_info->wave64_vgpr_alloc_granularity = 4;
+         ac_info->has_packed_math_16bit = true;
+-    } else if (gfxlevel == GFX8) {
+-        ac_info->max_waves_per_simd = 10;
+-        ac_info->num_physical_sgprs_per_simd = 16 * 10;
+-        ac_info->num_physical_wave64_vgprs_per_simd = 128;
+-        ac_info->num_simd_per_compute_unit = 1;
+-        ac_info->min_sgpr_alloc = 1;
+-        ac_info->max_sgpr_alloc = 16;
+-        ac_info->sgpr_alloc_granularity = 1;
+-        ac_info->min_wave64_vgpr_alloc = 4;
+-        ac_info->max_vgpr_alloc = 128;
+-        ac_info->wave64_vgpr_alloc_granularity = 4;
+     } else {
+-        /* GFX7 */
++        /* Offline PS4 targets: allocation budgets from Mesa ac_gpu_info.c,
++         * ac_fill_compiler_info(). That whole DRM-query unit is excluded by
++         * standalone PSBC, so keep only these register-allocation fields here.
++         * The GFX8 target is Tonga and retains Mesa's SGPRInitBug workaround. */
+         ac_info->max_waves_per_simd = 10;
+-        ac_info->num_physical_sgprs_per_simd = 12 * 10;
+-        ac_info->num_physical_wave64_vgprs_per_simd = 64;
+-        ac_info->num_simd_per_compute_unit = 1;
+-        ac_info->min_sgpr_alloc = 1;
+-        ac_info->max_sgpr_alloc = 12;
+-        ac_info->sgpr_alloc_granularity = 1;
++        ac_info->num_physical_sgprs_per_simd = gfxlevel >= GFX8 ? 800 : 512;
++        ac_info->min_sgpr_alloc = gfxlevel >= GFX8 ? 16 : 8;
++        ac_info->max_sgpr_alloc = gfxlevel >= GFX8 ? 102 : 104;
++        ac_info->sgpr_alloc_granularity = gfxlevel >= GFX8 ? 16 : 8;
++        if (family == CHIP_TONGA || family == CHIP_ICELAND) {
++            ac_info->min_sgpr_alloc = ac_info->max_sgpr_alloc = 96;
++            ac_info->sgpr_alloc_granularity = 96;
++        }
++        ac_info->num_physical_wave64_vgprs_per_simd = 256;
+         ac_info->min_wave64_vgpr_alloc = 4;
+-        ac_info->max_vgpr_alloc = 64;
++        ac_info->max_vgpr_alloc = 256;
+         ac_info->wave64_vgpr_alloc_granularity = 4;
++        ac_info->num_simd_per_compute_unit = 4;
+     }
++    printf("MILKDROP COMPILER TARGET GFX %u FAMILY %u SGPR %u/%u GRAN %u VGPR %u/%u SIMD %u\n",
++           (unsigned)gfxlevel, (unsigned)family,
++           ac_info->max_sgpr_alloc, ac_info->num_physical_sgprs_per_simd,
++           ac_info->sgpr_alloc_granularity, ac_info->max_vgpr_alloc,
++           ac_info->num_physical_wave64_vgprs_per_simd,
++           ac_info->num_simd_per_compute_unit);
+ }
+ 
+ static void setup_target(PsbcTarget target,
+@@ -960,12 +963,15 @@ PsbcResult psbc_compile_shader(
+ 
+     /* Construct ac_compiler_info for the target GPU */
+     struct ac_compiler_info ac_info = {0};
+-    setup_ac_info(&ac_info, gfxlevel);
++    setup_ac_info(&ac_info, gfxlevel, chipfamily);
+ 
+     /* Construct radv_compiler_info */
+     struct radv_compiler_info compiler_info = {0};
+     compiler_info.ac = &ac_info;
+-    compiler_info.hw.address32_hi = 0;
++    compiler_info.hw.address32_hi = opts->address32_hi;
++    compiler_info.sampled_image_desc_size = 32;
++    compiler_info.combined_image_sampler_desc_size = 64;
++    compiler_info.combined_image_sampler_offset = 32;
+     compiler_info.key.ge_wave_size = 64;
+     compiler_info.key.ps_wave_size = (gfxlevel >= GFX10_3) ? 32 : 64;
+     compiler_info.key.cs_wave_size = (gfxlevel >= GFX10_3) ? 32 : 64;
+@@ -1023,6 +1029,59 @@ PsbcResult psbc_compile_shader(
+     radv_nir_shader_info_init(stage.stage, stage.next_stage, &stage.info);
+ 
+     struct radv_shader_layout layout = {0};
++    /* Explicit, bounded resource ABI for standalone native draws. RADV's
++     * descriptor lowering dereferences this layout, even without Vulkan. */
++    if (opts->resource_count > 16 || (opts->resource_count && !opts->resources)) {
++        ralloc_free(nir); psbc_shutdown();
++        return PSBC_RESULT_INTERNAL_ERROR;
++    }
++    if (opts->resource_count) {
++        struct radv_descriptor_set_layout *set = rzalloc_size(nir,
++            sizeof(*set) + opts->resource_count * sizeof(set->binding[0]));
++        if (!set) { ralloc_free(nir); psbc_shutdown(); return PSBC_RESULT_OUT_OF_MEMORY; }
++        set->binding_count = opts->resource_count;
++        set->size = opts->resource_count * 64;
++        for (unsigned i=0; i<opts->resource_count; ++i) {
++            set->binding[i].array_size = 1;
++            set->binding[i].offset = i * 64;
++            set->binding[i].size = 64;
++            switch (opts->resources[i]) {
++            case PSBC_RESOURCE_IMAGE_SAMPLER:
++                set->binding[i].type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER; break;
++            case PSBC_RESOURCE_UNIFORM_BUFFER:
++                set->binding[i].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER; break;
++            default:
++                ralloc_free(nir); psbc_shutdown(); return PSBC_RESULT_INTERNAL_ERROR;
++            }
++        }
++        layout.num_sets = 1;
++        layout.set[0].layout = set;
++    }
++    /* Reject missing/out-of-range layouts before RADV can dereference them.
++     * This diagnostic API intentionally does not accept arbitrary presets. */
++    nir_foreach_variable_with_modes(var, nir, nir_var_uniform) {
++        if (var->data.descriptor_set != 0 || var->data.binding >= opts->resource_count ||
++            glsl_type_is_array(var->type) ||
++            opts->resources[var->data.binding] != PSBC_RESOURCE_IMAGE_SAMPLER) {
++            ralloc_free(nir); psbc_shutdown(); return PSBC_RESULT_INTERNAL_ERROR;
++        }
++    }
++    nir_foreach_function_impl(impl, nir) {
++        nir_foreach_block(block, impl) {
++            nir_foreach_instr(instr, block) {
++                if (instr->type != nir_instr_type_intrinsic) continue;
++                nir_intrinsic_instr *intr = nir_instr_as_intrinsic(instr);
++                if (intr->intrinsic == nir_intrinsic_load_push_constant ||
++                    (intr->intrinsic == nir_intrinsic_vulkan_resource_index &&
++                     (nir_intrinsic_desc_set(intr) != 0 ||
++                      nir_intrinsic_binding(intr) >= opts->resource_count ||
++                      opts->resources[nir_intrinsic_binding(intr)] != PSBC_RESOURCE_UNIFORM_BUFFER))) {
++                    ralloc_free(nir); psbc_shutdown(); return PSBC_RESULT_INTERNAL_ERROR;
++                }
++            }
++        }
++    }
++    stage.layout = layout;
+     struct radv_graphics_state_key gfx_state = {0};
+     gfx_state.ps.epilog.spi_shader_col_format = V_028714_SPI_SHADER_FP16_ABGR;
+     gfx_state.ps.epilog.color_is_int8 = 0xff;
+@@ -1033,6 +1092,28 @@ PsbcResult psbc_compile_shader(
+         RADV_PIPELINE_GRAPHICS, false, &stage.info
+     );
+ 
++    /* HYPNOTIC: the standalone path must perform RADV's shader-info link
++     * step before legacy VS lowering. This assigns vs_output_param_offset
++     * and param_exports; without it the generated VS exports only position
++     * even when its NIR still declares user varyings. With no consumer stage
++     * present, RADV conservatively preserves the standalone stage outputs. */
++    if (mesa_stage == MESA_SHADER_VERTEX || mesa_stage == MESA_SHADER_TESS_EVAL) {
++        struct radv_shader_stage *link_stages =
++            calloc(MESA_VULKAN_SHADER_STAGES, sizeof(*link_stages));
++        if (!link_stages) {
++            ralloc_free(nir);
++            psbc_shutdown();
++            return PSBC_RESULT_OUT_OF_MEMORY;
++        }
++        stage.nir = nir;
++        link_stages[mesa_stage] = stage;
++        radv_nir_shader_info_link(&compiler_info, &gfx_state, link_stages);
++        stage.info = link_stages[mesa_stage].info;
++        free(link_stages);
++        printf("MILKDROP COMPILER LINK: stage=%u param_exports=%u\n",
++               (unsigned)mesa_stage, stage.info.outinfo.param_exports);
++    }
++
+     /* Determine previous stage for shader args declaration.
+      * HS/GS need previous_stage=VERTEX so that the merged-pipeline args
+      * (prolog_inputs, vertex_buffers, etc.) are declared for the NIR
+diff --git a/libpsbc/psbc_compile.h b/libpsbc/psbc_compile.h
+index 000e7e1..ac73f78 100644
+--- a/libpsbc/psbc_compile.h
++++ b/libpsbc/psbc_compile.h
+@@ -56,11 +56,23 @@ typedef struct {
+     size_t  size;         /* Total size of data in bytes */
+ } PsbcShaderOutput;
+ 
++/* HYPNOTIC standalone set-0 ABI: each binding occupies 64 bytes.
++ * Combined image/sampler: texture at +0, sampler at +32. UBO: buffer at +0.
++ * No arrays, other descriptor sets, dynamic buffers or push constants yet. */
++typedef enum {
++    PSBC_RESOURCE_NONE = 0,
++    PSBC_RESOURCE_IMAGE_SAMPLER,
++    PSBC_RESOURCE_UNIFORM_BUFFER,
++} PsbcResourceType;
++
+ typedef struct {
+     PsbcTarget  target;
+     PsbcStage   stage;
+     const char* entrypoint;  /* Default: "main" */
+     bool        optimise;    /* Default: true */
++    uint32_t address32_hi;   /* High address bits shared by descriptor tables. */
++    uint32_t resource_count; /* Up to 16 bindings in descriptor set 0. */
++    const PsbcResourceType *resources;
+ } PsbcCompileOptions;
+ 
+ /* === API === */
+diff --git a/src/amd/vulkan/radv_shader.c b/src/amd/vulkan/radv_shader.c
+index 61fe2b4..7dc552b 100644
+--- a/src/amd/vulkan/radv_shader.c
++++ b/src/amd/vulkan/radv_shader.c
+@@ -1740,7 +1740,7 @@ radv_precompute_registers_hw_hs(struct radv_device *device, struct radv_shader *
+    if (pdev->info.gfx_level < GFX11)
+       return;
+ 
+-   unsigned inst_pref_size = radv_get_inst_pref_size(&device->compiler_info, shader->exec_size);
++   unsigned inst_pref_size = radv_get_inst_pref_size(device->compiler_info, shader->exec_size);
+ 
+    if (pdev->info.gfx_level >= GFX12) {
+       regs->spi_shader_pgm_rsrc4_gs_hs =
+@@ -1823,7 +1823,7 @@ radv_precompute_registers_hw_ngg(struct radv_device *device, struct radv_shader
+ 
+    if (pdev->info.gfx_level >= GFX12) {
+       const unsigned num_params = MAX2(info->outinfo.param_exports, 1);
+-      unsigned inst_pref_size = radv_get_inst_pref_size(&device->compiler_info, shader->exec_size);
++      unsigned inst_pref_size = radv_get_inst_pref_size(device->compiler_info, shader->exec_size);
+ 
+       regs->spi_vs_out_config = S_00B0C4_VS_EXPORT_COUNT(num_params - 1) | S_00B0C4_PRIM_EXPORT_COUNT(num_prim_params) |
+                                 S_00B0C4_NO_PC_EXPORT(no_pc_export);
+@@ -1844,7 +1844,7 @@ radv_precompute_registers_hw_ngg(struct radv_device *device, struct radv_shader
+          ac_apply_cu_en(S_00B21C_CU_EN(cu_mask) | S_00B21C_WAVE_LIMIT(0x3F), C_00B21C_CU_EN, 0, &pdev->info);
+ 
+       if (pdev->info.gfx_level >= GFX11) {
+-         unsigned inst_pref_size = radv_get_inst_pref_size(&device->compiler_info, shader->exec_size);
++         unsigned inst_pref_size = radv_get_inst_pref_size(device->compiler_info, shader->exec_size);
+ 
+          regs->spi_shader_pgm_rsrc4_gs_hs =
+             ac_apply_cu_en(S_00B204_CU_EN_GFX11(0x1) | S_00B204_SPI_SHADER_LATE_ALLOC_GS_GFX10(late_alloc_wave64) |
+@@ -1995,7 +1995,7 @@ radv_precompute_registers_hw_fs(struct radv_device *device, struct radv_shader *
+       regs->ps.spi_ps_in_control = S_028640_PS_W32_EN(info->wave_size == 32);
+       regs->ps.spi_gs_out_config_ps = S_00B0C4_NUM_INTERP(info->ps.num_inputs);
+ 
+-      unsigned inst_pref_size = radv_get_inst_pref_size(&device->compiler_info, shader->exec_size);
++      unsigned inst_pref_size = radv_get_inst_pref_size(device->compiler_info, shader->exec_size);
+       regs->ps.spi_shader_pgm_rsrc4_ps =
+          S_00B01C_WAVE_LIMIT_GFX12(0x3FF) | S_00B01C_LDS_GROUP_SIZE_GFX12(1) | S_00B01C_INST_PREF_SIZE(inst_pref_size);
+ 
+@@ -2018,7 +2018,7 @@ radv_precompute_registers_hw_fs(struct radv_device *device, struct radv_shader *
+       }
+ 
+       if (pdev->info.gfx_level >= GFX11) {
+-         unsigned inst_pref_size = radv_get_inst_pref_size(&device->compiler_info, shader->exec_size);
++         unsigned inst_pref_size = radv_get_inst_pref_size(device->compiler_info, shader->exec_size);
+ 
+          unsigned cu_mask_ps = ac_gfx103_get_cu_mask_ps(&pdev->info);
+ 
+@@ -3194,7 +3194,7 @@ radv_shader_part_create(struct radv_device *device, struct radv_shader_part_bina
+    shader_part->spi_shader_z_format = binary->info.spi_shader_z_format;
+ 
+    if (pdev->info.gfx_level >= GFX11)
+-      shader_part->inst_pref_size = radv_get_inst_pref_size(&device->compiler_info, binary->exec_size);
++      shader_part->inst_pref_size = radv_get_inst_pref_size(device->compiler_info, binary->exec_size);
+ 
+    /* Allocate memory and upload. */
+    shader_part->alloc = radv_alloc_shader_memory(device, shader_part->code_size, false, NULL);

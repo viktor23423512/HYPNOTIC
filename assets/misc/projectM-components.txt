@@ -1,0 +1,15 @@
+Test 0.10 uses projectM-Eval (MIT) and the unchanged projectM 4.1.8 PresetFileParser (LGPL-2.1).
+Official sources: https://github.com/projectM-visualizer/projectm-eval
+https://github.com/projectM-visualizer/projectm
+Exact revisions are in tests/milkdrop_ps4/source-revisions.json.
+All sources and build instructions remain in the local development tree.
+This is an equation/renderer-adapter experiment, not full projectM compatibility.
+The equation fixture is authored for HYPNOTIC; no community preset pack is bundled.
+
+Test 0.40 adds an adapted projectM 4.1.8 MilkdropNoise generator (LGPL-2.1); original interpolation/generation retained, GL upload removed and seed caller-supplied. Source: native_graphics/milkdrop_noise.hpp and upstream Renderer/MilkdropNoise.cpp. The curated test now bundles 130 original community presets; exact paths and hashes are in curated-130/manifest.json.
+
+Test 0.42 aligns relative audio bands/averaging with projectM 4.1.8 Audio/Loudness.cpp and PCM.cpp (LGPL-2.1). Native adapter: native_graphics/audio_reactivity.hpp; golden host test links original upstream Loudness.cpp.
+
+Test 0.43 adapts the four animated colour corners from projectM 4.1.8 MilkdropPreset/FinalComposite.cpp (LGPL-2.1) in native_graphics/hue_field.hpp. Native shader uses bilinear interpolation of these corner colours; upstream interpolates them across its fine composite grid. Bounded preset macro/conditional preprocessing is implemented locally in native_graphics/shader_preprocess.hpp. Noise texture dimensions are unchanged; typed constants avoid a parser limitation on parenthesized vector constructors.
+
+Test 0.46 adapts projectM 4.1.8 MilkdropPreset/VideoEcho.cpp, Filters.cpp, DarkenCenter.cpp and default shader-stage behavior (LGPL-2.1). Native implementation: legacy_final_math.hpp, legacy_final_shader.hpp, legacy_final_gpu.hpp. Final echo/gamma use evaluated per-frame variables rather than immutable preset-state values; finite input budgets retained. Original upstream sources and existing license text remain in the development tree/package.

@@ -1,0 +1,9 @@
+{
+  "dr_libs_commit": "35b5c392cc15456736c440a68dbe073178bbffe0",
+  "files": {
+    "dr_wav.h": "a5a2209b04ceb9c41648cc17916b78116bcc2377ec0c63ac431d81235ddc9e89",
+    "dr_mp3.h": "f5c8020eeebb79877184432efdd2651f24869f5bb8f379d45450fd0aed1ee915",
+    "dr_flac.h": "b8078eeb5d523502eb7964508cd7ec8450bc79d383bec90aa17fd9e2fefd9c24",
+    "stb_vorbis.c": "490e8e3448d2039050083b8530c35a59c109b67407162a1eecff1ed3d50a975d"
+  }
+}

@@ -1,0 +1,5 @@
+#include "milkdrop_player.h"
+#include <vector>
+#include <cassert>
+#include <cstdio>
+int main(){std::vector<unsigned char> source(520*288*4,0xEE),dest(512*288*4+8,0xAB);for(unsigned y=0;y<288;++y)for(unsigned x=0;x<512;++x){auto p=&source[(y*520+x)*4];p[0]=x&255;p[1]=y&255;p[2]=93;p[3]=255;}MilkdropPixels image={source.data(),512,288,520};assert(copyMilkdropPixels(image,dest.data(),dest.size()-8));for(unsigned y=0;y<288;++y)for(unsigned x=0;x<512;++x){auto p=&dest[(y*512+x)*4];assert(p[0]==(x&255)&&p[1]==(y&255)&&p[2]==93&&p[3]==255);}for(unsigned i=512*288*4;i<dest.size();++i)assert(dest[i]==0xAB);assert(!copyMilkdropPixels(image,dest.data(),16));image.pitch=511;assert(!copyMilkdropPixels(image,dest.data(),dest.size()));image.pitch=520;image.width=1024;assert(!copyMilkdropPixels(image,dest.data(),dest.size()));image.width=512;image.rgba=nullptr;assert(!copyMilkdropPixels(image,dest.data(),dest.size()));puts("PASS padded-pitch RGBA copy, channel/orientation preservation, no buffer overrun, invalid layout/capacity rejection");}

@@ -1,0 +1,16 @@
+# Project-local cross configuration. No SDK installation or edits.
+set(CMAKE_SYSTEM_NAME FreeBSD)
+set(CMAKE_SYSTEM_PROCESSOR x86_64)
+set(CMAKE_C_COMPILER "C:/Program Files/LLVM/bin/clang.exe")
+set(CMAKE_CXX_COMPILER "C:/Program Files/LLVM/bin/clang++.exe")
+set(CMAKE_C_COMPILER_TARGET x86_64-pc-freebsd12-elf)
+set(CMAKE_CXX_COMPILER_TARGET x86_64-pc-freebsd12-elf)
+set(CMAKE_AR "C:/Program Files/LLVM/bin/llvm-ar.exe")
+set(CMAKE_RANLIB "C:/Program Files/LLVM/bin/llvm-ranlib.exe")
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+get_filename_component(HYPNOTIC_SDK "${CMAKE_CURRENT_LIST_DIR}/../../../OpenOrbis/PS4Toolchain" ABSOLUTE)
+set(CMAKE_SYSROOT "${HYPNOTIC_SDK}")
+set(CMAKE_C_FLAGS_INIT "-fPIC -ffunction-sections -fdata-sections -isystem ${HYPNOTIC_SDK}/include -D__ORBIS__ -DORBIS -D_GNU_SOURCE -D_XOPEN_SOURCE=700 -DDISABLE_THREAD_SUPPORT")
+set(CMAKE_CXX_FLAGS_INIT "-fPIC -ffunction-sections -fdata-sections -isystem ${HYPNOTIC_SDK}/include -isystem ${HYPNOTIC_SDK}/include/c++/v1 -D__ORBIS__ -DORBIS -D_GNU_SOURCE -D_XOPEN_SOURCE=700 -DDISABLE_THREAD_SUPPORT")
+# OpenOrbis libc/kernel supply POSIX threads; cross checks cannot run on host.
+set(CMAKE_HAVE_LIBC_PTHREAD 1 CACHE INTERNAL "OpenOrbis pthread API")

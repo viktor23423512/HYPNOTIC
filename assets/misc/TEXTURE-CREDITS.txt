@@ -1,0 +1,2 @@
+Starter Aurora/Copper images are original procedural assets generated for HYPNOTIC; no third-party image artwork. Image decoder: unmodified stb_image v2.05 by Sean Barrett and contributors, public domain; original source/notice retained in projectM vendor/SOIL2/stb_image.h.
+Brain Zoom preset by Geiss, unchanged from the pinned projectM collection. Noise texture uses the projectM low-quality 256x256 RGBA distribution with a local deterministic PRNG.

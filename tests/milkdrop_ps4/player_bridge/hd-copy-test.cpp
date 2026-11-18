@@ -1,0 +1,5 @@
+#include "milkdrop_player.h"
+#include <vector>
+#include <cassert>
+#include <cstdio>
+int main(){for(unsigned w:{512u,1920u}){unsigned h=w==512?288:1080,pitch=w==512?520:2048;std::vector<unsigned char> input((size_t)pitch*h*4,0xEE),output((size_t)w*h*4+16,0xAC);for(unsigned y=0;y<h;++y)for(unsigned x=0;x<w;++x){auto p=&input[((size_t)y*pitch+x)*4];p[0]=x&255;p[1]=y&255;p[2]=73;p[3]=255;}MilkdropPixels image{input.data(),w,h,pitch};assert(copyMilkdropPixels(image,output.data(),output.size()-16));for(unsigned y=0;y<h;++y)for(unsigned x=0;x<w;++x){auto p=&output[((size_t)y*w+x)*4];assert(p[0]==(x&255)&&p[1]==(y&255)&&p[2]==73&&p[3]==255);}for(size_t at=(size_t)w*h*4;at<output.size();++at)assert(output[at]==0xAC);assert(!copyMilkdropPixels(image,output.data(),(size_t)w*h*4-1));image.pitch=w-1;assert(!copyMilkdropPixels(image,output.data(),output.size()));image.pitch=pitch;image.height=h-1;assert(!copyMilkdropPixels(image,output.data(),output.size()));}puts("PASS 512/1080p padded-pitch copies, row orientation/channel preservation, guard bytes and invalid dimensions/capacity rejection");}

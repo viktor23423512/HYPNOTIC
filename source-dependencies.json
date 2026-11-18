@@ -1,0 +1,45 @@
+[
+  {
+    "name": "projectM",
+    "path": "tests/milkdrop_spike/projectm-4.1.8",
+    "url": "https://github.com/projectM-visualizer/projectm.git",
+    "commit": "4967dc003e5206d7df3ff447287f7609c47d2343"
+  },
+  {
+    "name": "projectM-Eval",
+    "path": "tests/milkdrop_ps4/projectm-eval",
+    "url": "https://github.com/projectM-visualizer/projectm-eval.git",
+    "commit": "e8c311e86f4d8c082e96e02b6a33525034eee6d4"
+  },
+  {
+    "name": "glslang",
+    "path": "tests/milkdrop_ps4/glslang",
+    "url": "https://github.com/KhronosGroup/glslang.git",
+    "commit": "95b29cb9fa136f32198769f2946d06917dedc217"
+  },
+  {
+    "name": "OpenGNM",
+    "path": "tests/milkdrop_ps4/opengnm-stack/opengnm",
+    "url": "https://github.com/PS4-OpenGNM/opengnm.git",
+    "commit": "c51243f333a1a964894903da080a508f7af4d91f"
+  },
+  {
+    "name": "PSBC",
+    "path": "tests/milkdrop_ps4/opengnm-stack/opengnm-psbc",
+    "url": "https://github.com/PS4-OpenGNM/opengnm-psbc.git",
+    "commit": "a92a1228ea3a64e4be9f0e61c2a65a5aa7ffed92",
+    "patch": "patches/psbc-orbis.patch"
+  },
+  {
+    "name": "Vulkan-Headers",
+    "path": "tests/milkdrop_ps4/opengnm-stack/Vulkan-Headers",
+    "url": "https://github.com/KhronosGroup/Vulkan-Headers.git",
+    "commit": "9fbc2a782ee3f8a4db64e7d991e23da75e893f44"
+  },
+  {
+    "name": "SPIRV-Headers",
+    "path": "tests/milkdrop_ps4/opengnm-stack/SPIRV-Headers",
+    "url": "https://github.com/KhronosGroup/SPIRV-Headers.git",
+    "commit": "fef168c54ed2e37c314eb251806aaf9877f38465"
+  }
+]

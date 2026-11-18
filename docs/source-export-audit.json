@@ -1,0 +1,21 @@
+{
+  "snapshot": "0.77",
+  "receipt_source_files_checked": 129,
+  "receipt_mismatches": [],
+  "runtime_changes": "none; export-only common include/build paths relocated",
+  "excluded": [
+    "libjbc source/patch/binary (missing license)",
+    "SDK/toolchain/module binaries",
+    "PKGs/ELFs/objects/static libraries",
+    "logs, credentials and local settings",
+    "sample music, recordings and community preset files"
+  ],
+  "build_status": "Source snapshot; clean-checkout build blocked by documented dependencies",
+  "license": "GPLv3 authorized by user; third-party exceptions retained",
+  "files": 234,
+  "content_bytes_excluding_manifests": 2746436,
+  "manifest_excludes": [
+    "docs/source-export-audit.json",
+    "docs/source-files.json"
+  ]
+}

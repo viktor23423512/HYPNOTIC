@@ -33,6 +33,16 @@ Development pre-releases. Download the `.pkg` from the release’s Assets sectio
 - Mic Mode, saved visualizer Favorites/Recent, automatic preset cycling, themes and fonts.
 - 1080p default. Performance varies by preset; complex effects can run below 60 FPS.
 
+## Source code
+
+The 0.77 development source is published under [GPLv3](LICENSE), with [separate third-party notices](LICENSES/README.md).
+
+[Browse the player source](graphics/) · [Download source ZIP](https://github.com/viktor23423512/HYPNOTIC/archive/refs/heads/main.zip)
+
+Use `main` for the source snapshot; the existing 0.76/0.77 release tags predate this source publication.
+
+Start with [build notes](docs/BUILDING.md) and [pinned dependencies](source-dependencies.json). This is a source snapshot; a clean-checkout build is not yet validated. The libjbc dependency is omitted pending license clarification, and toolchain binaries, sample music and community preset files are not included.
+
 ## Requirements
 
 A homebrew-enabled PS4 with a working PKG installer. Compatibility with older firmware/GoldHEN versions is unverified.

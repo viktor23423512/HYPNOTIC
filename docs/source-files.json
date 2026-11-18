@@ -1,0 +1,1162 @@
+[
+  {
+    "path": ".gitignore",
+    "bytes": 482,
+    "sha256": "a501b75af7b946926eb85f977cd12c013d6a57b4e9af2d7bdda20a14de2ce9bf"
+  },
+  {
+    "path": "assets/branding/hypnotic-edge-glow.svg",
+    "bytes": 3397,
+    "sha256": "b534d50ddd1616f1279755c2d9644b2b5da9964e3853493d706f9e80ec0e04e3"
+  },
+  {
+    "path": "assets/misc/AUDIO-LICENSES.txt",
+    "bytes": 10923,
+    "sha256": "15035e1a10d0e7ae06651615101904317a01859d59d408de16aa631cc872fd0f"
+  },
+  {
+    "path": "assets/misc/glslang-LICENSE.txt",
+    "bytes": 54615,
+    "sha256": "17e70c676e1521ff3e4686f04a2053d93a7e28a33be8de7ec37ab0ff72feb677"
+  },
+  {
+    "path": "assets/misc/LICENSE-HLSLPARSER.txt",
+    "bytes": 1105,
+    "sha256": "a70d63a2129fa57799390a2afb9fc4f1ddc523582d66bc65d2f64be08ab46c15"
+  },
+  {
+    "path": "assets/misc/OpenOrbis-LICENSE.txt",
+    "bytes": 35149,
+    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  },
+  {
+    "path": "assets/misc/projectM-components.txt",
+    "bytes": 2066,
+    "sha256": "6a48849fbe7be2942a2870250e4c663b418b5b24999e6c4e3625f136e42482e3"
+  },
+  {
+    "path": "assets/misc/projectm-eval-LICENSE.md",
+    "bytes": 1117,
+    "sha256": "91323e798f8d0bb659068676dc7bce2c894b5e8cea477764f705caf4bb97e019"
+  },
+  {
+    "path": "assets/misc/TEXTURE-CREDITS.txt",
+    "bytes": 453,
+    "sha256": "2fb0222193de3869897263dfc614996ab7b2f3346def368c2ed0bc7ee69de04a"
+  },
+  {
+    "path": "assets/misc/THIRD_PARTY_NOTICES.txt",
+    "bytes": 351267,
+    "sha256": "955c71b601d1a73eca81644cea903302aa677d0fde98ca3487f409c20cd9f210"
+  },
+  {
+    "path": "assets/README.md",
+    "bytes": 438,
+    "sha256": "b683f6ac88aab8a7855050ba1a856b462aeff3b7001752ffe6e666e195fce667"
+  },
+  {
+    "path": "common/graphics.cpp",
+    "bytes": 8290,
+    "sha256": "9c84ca9e9ef2c5ad8f7ae20b91031db6f83b0d6fe5dac4f4693869df76756ef7"
+  },
+  {
+    "path": "common/graphics.h",
+    "bytes": 1688,
+    "sha256": "3b0103b088f414e52a1aebe79552883d381c6d8f4481c91fbd6aa73fe1679b71"
+  },
+  {
+    "path": "common/log.h",
+    "bytes": 513,
+    "sha256": "a6ebb2470fc561adcad41001fb09f7f09ffbf0b9636c837b18c867bc607bc257"
+  },
+  {
+    "path": "common/png.cpp",
+    "bytes": 1397,
+    "sha256": "9afc74fff15213bd77e27b52a24068b76ce1fac86a6540145088cdc3cb88a938"
+  },
+  {
+    "path": "common/png.h",
+    "bytes": 231,
+    "sha256": "08074388af2e875cfd11aaf524c6523a9b7ca9431a41cc10a280874400215566"
+  },
+  {
+    "path": "common/README.md",
+    "bytes": 522,
+    "sha256": "d4dc2b22e68f09269a6c8fa7c89d95c30bc92d2d7f4ef054bc1ba5b0ebb69e76"
+  },
+  {
+    "path": "docs/BUILDING.md",
+    "bytes": 2822,
+    "sha256": "620366421883d35463b66b08f9d993ee9f351587db44dcf82d691ac5a1c0f66a"
+  },
+  {
+    "path": "docs/preset-provenance.json",
+    "bytes": 40267,
+    "sha256": "ecc22bfebbbd3e9f7127f779bde240c52e17044c5fe38943e0fd0b4b2711bd48"
+  },
+  {
+    "path": "graphics/audio.cpp",
+    "bytes": 16680,
+    "sha256": "5d7495b42188b6bce42112186d3ad71b46f551843d1488f8d5bd3f96f7c8ba59"
+  },
+  {
+    "path": "graphics/audio.h",
+    "bytes": 1336,
+    "sha256": "c03caef4a144feee5e60359709e4439c7184bb8da818b4ad687781034802ee8a"
+  },
+  {
+    "path": "graphics/audio_decoder.cpp",
+    "bytes": 4404,
+    "sha256": "2696300b11d3a7146e24933a228394302c173a7538fad0ab6f07a5dbaef32296"
+  },
+  {
+    "path": "graphics/audio_decoder.h",
+    "bytes": 808,
+    "sha256": "222ff810fb04b8fbf1ae810add19fcd37d6a29001b2dcb6d326db0aaa7ff18ab"
+  },
+  {
+    "path": "graphics/audio_input_api.h",
+    "bytes": 775,
+    "sha256": "43335bcb833c1dd02aef8084b455f8258db30d8a86d7bbc36c2f928f08a92fd4"
+  },
+  {
+    "path": "graphics/audio_spectrum.h",
+    "bytes": 3188,
+    "sha256": "db500aa489c26322992b8cafe241436c8ca2e6dcd3a5a6682f76e07db4907837"
+  },
+  {
+    "path": "graphics/audio_stereo_scope.h",
+    "bytes": 521,
+    "sha256": "73537e1c18c28a8929140bdde778aefe446f6a1a18fd9c71494eb649b6d4590d"
+  },
+  {
+    "path": "graphics/audio_waveform.h",
+    "bytes": 1380,
+    "sha256": "f9a56478a13ca58d9e33cb1b117d68ef81f67b9d9fa905291edd42b1e922266e"
+  },
+  {
+    "path": "graphics/build.bat",
+    "bytes": 6791,
+    "sha256": "e7a2bfe17171c78254ccc51d29f4651ec3dd02a6536dc44502ee9a1d565604fc"
+  },
+  {
+    "path": "graphics/build_gpu_diagnostic.bat",
+    "bytes": 101,
+    "sha256": "8d6201cba31f63ec19a00a5013dbe6141bebf1dbd943e88b715dd787cb4cccb9"
+  },
+  {
+    "path": "graphics/builtin_settings.h",
+    "bytes": 2463,
+    "sha256": "d0cbae23f4ed4828396f471ac5226bcdd71dcc69187e04f826d3c61c9b7d0bba"
+  },
+  {
+    "path": "graphics/cube_orbit.h",
+    "bytes": 3003,
+    "sha256": "e1ce73b062ef304e2e23d44e2d5c0bdb273fa29c9e9c86bb7feb40c7cf7f137e"
+  },
+  {
+    "path": "graphics/cymatics_model.h",
+    "bytes": 6702,
+    "sha256": "2dd574ad638eb92c1980c652f3ad62c24694452892d4ac0c270b92eb2c70195f"
+  },
+  {
+    "path": "graphics/filesystem_access.cpp",
+    "bytes": 4088,
+    "sha256": "656c97db436d38dddc039eaa518cbd47fa3bfa92313319e65bb5de4a311be1ff"
+  },
+  {
+    "path": "graphics/filesystem_access.h",
+    "bytes": 101,
+    "sha256": "078a78263e5cf7e5de96a4f21b10bedaf43b9e2fa613d669851289e5da38aeb8"
+  },
+  {
+    "path": "graphics/fractal_bloom_model.h",
+    "bytes": 4856,
+    "sha256": "5aac5aa52e5521ba59bbe35348e3adbca3742a0dfdb1fc3dd088ec5acd82ea2c"
+  },
+  {
+    "path": "graphics/fractal_dive_model.h",
+    "bytes": 2563,
+    "sha256": "74f28f0dbad3e97902729262af88c49ee12183ef31a1983877734d62334b199c"
+  },
+  {
+    "path": "graphics/gpu_cube_orbit.h",
+    "bytes": 2484,
+    "sha256": "787905aaabdc4066e2954852cd721b37f191a36623d991ebe9e8ac1c017e1505"
+  },
+  {
+    "path": "graphics/gpu_cymatics.h",
+    "bytes": 2127,
+    "sha256": "ae7a362dba72b17c5a933f37bc2fd84b8d9d3e8542cce5b144d7febde9acdb3e"
+  },
+  {
+    "path": "graphics/gpu_diagnostic.cpp",
+    "bytes": 3874,
+    "sha256": "c3d065cf50f7c3080a4b9959b31c85b2d4a73c76a62524ce19c26dc3e59ae9c6"
+  },
+  {
+    "path": "graphics/gpu_fractal_bloom.h",
+    "bytes": 5045,
+    "sha256": "e4403aabc0017b55103698b0b1be09efed9854c220c49ec76a64f1f519fce84e"
+  },
+  {
+    "path": "graphics/gpu_fractal_dive.h",
+    "bytes": 6018,
+    "sha256": "f25758d52d91f3173ae6ea56635b54d6b95c23f6c501479f0fb7d81473da6284"
+  },
+  {
+    "path": "graphics/gpu_kaleidoscope.h",
+    "bytes": 4828,
+    "sha256": "b3ec2d9276b41cb371cd9474826960cee801402039030728b62df815df231b0f"
+  },
+  {
+    "path": "graphics/gpu_liquid_aura.h",
+    "bytes": 6905,
+    "sha256": "b12c0656021979e3492ddebb40f289af5f230f349099c218ecbc6d2615530d9c"
+  },
+  {
+    "path": "graphics/gpu_matrix_eq.h",
+    "bytes": 6205,
+    "sha256": "868febd796319bf4aa42a1e0098e1aee1ba5678a248678e8d68a180dc33ef727"
+  },
+  {
+    "path": "graphics/gpu_scene.cpp",
+    "bytes": 16224,
+    "sha256": "494a5d58d3fae6c6d01d78ce9a2719c8d5e45516098d341fe655fe9b7d68d4fa"
+  },
+  {
+    "path": "graphics/gpu_scene.h",
+    "bytes": 1576,
+    "sha256": "3483feb66bd1c7c2b795ace2e50b106945e048757912eb8c68c04e74f18dc363"
+  },
+  {
+    "path": "graphics/gpu_storm.h",
+    "bytes": 8698,
+    "sha256": "ea69cc77b7b2efac5f91b24a85a3103d014c8cbbdbf67d80f3112e442f26a280"
+  },
+  {
+    "path": "graphics/gpu_wormhole.h",
+    "bytes": 5454,
+    "sha256": "4cad03ebdb690c2472b954002628a5e2c0cd0130d425d381229bf8790abf3f45"
+  },
+  {
+    "path": "graphics/gpu_xy_scope.h",
+    "bytes": 4168,
+    "sha256": "4363b31407047686087a1aabfe6922b4bb061818827a5c18f2652ea5ef91eb00"
+  },
+  {
+    "path": "graphics/hypnotic-link.x",
+    "bytes": 2156,
+    "sha256": "764887d04f0d648e3e708bf7344b46ddf2c03a65b3c85b3c7f8dce5601f0e8ac"
+  },
+  {
+    "path": "graphics/main.cpp",
+    "bytes": 49364,
+    "sha256": "4923f7b095d8ee633314a73a5288ca4c127d9717ce96a5628ebe67db35f5dbdb"
+  },
+  {
+    "path": "graphics/matrix_eq_model.h",
+    "bytes": 7979,
+    "sha256": "2174993eba8f9a3f07cd228e77a63298fdaac45198afbbd7297ef2be2950b464"
+  },
+  {
+    "path": "graphics/matrix_katakana.h",
+    "bytes": 51878,
+    "sha256": "849fb3dde8a11820e86264c05f21f3c1db66a419bb572b7c35ec27ec98246c22"
+  },
+  {
+    "path": "graphics/menu_repeat.h",
+    "bytes": 976,
+    "sha256": "7cf1f9c5fea429eb07696cb795cb2ba74265fa901820b55896cfc8e9ccb095e8"
+  },
+  {
+    "path": "graphics/mic_open_policy.h",
+    "bytes": 770,
+    "sha256": "e31383f3c59b657814236907fd03281216276fcac1672feb61d53660f3462432"
+  },
+  {
+    "path": "graphics/microphone.cpp",
+    "bytes": 6914,
+    "sha256": "c4e148671928afd16afba779b33d747ad8a58a67335766d842ff8c3c7e949e29"
+  },
+  {
+    "path": "graphics/microphone.h",
+    "bytes": 337,
+    "sha256": "148669781f12a089c2c42eede8c3bc4cb9ab0e7164dee18e9a5cb0e9bbbf1b83"
+  },
+  {
+    "path": "graphics/milkdrop_asset_inventory.h",
+    "bytes": 10669,
+    "sha256": "909b9a85f78d26a81b78d194e77a2fb129f872722003cbc205e96b155adcf7cf"
+  },
+  {
+    "path": "graphics/milkdrop_backend.cpp",
+    "bytes": 59,
+    "sha256": "67593916553293564231c7b382fee750bc9adda15d6c4c48da2aae175f0ff343"
+  },
+  {
+    "path": "graphics/milkdrop_bridge_timing.h",
+    "bytes": 1486,
+    "sha256": "1f80080d9717b3574354face80afe10baa870cfb6233263977b06a577cfb8322"
+  },
+  {
+    "path": "graphics/milkdrop_browser.h",
+    "bytes": 2386,
+    "sha256": "0e5a96c6ae0b2e7654b765d67aa62fcd4740d02227813d778f859288cdfcd713"
+  },
+  {
+    "path": "graphics/milkdrop_catalog.h",
+    "bytes": 11031,
+    "sha256": "acbfee16f2d0e61925ada09d6fbaff1406824bb0d6fcedc7527a2f7a311c4e8b"
+  },
+  {
+    "path": "graphics/milkdrop_common_shader.cpp",
+    "bytes": 67,
+    "sha256": "cef76816e81235867e4f8de22ab28345d80867424699b8a463654d2f5a90f016"
+  },
+  {
+    "path": "graphics/milkdrop_file_io.cpp",
+    "bytes": 3505,
+    "sha256": "2d5c945f7789d82a6fddef18d2cb6f62dad8533eddcd03321bb62b7056899be0"
+  },
+  {
+    "path": "graphics/milkdrop_file_io.h",
+    "bytes": 214,
+    "sha256": "667a8351cdd5ee1743dfb71edf6f79cdd83123db190ccd2e77c91e5b42d5820c"
+  },
+  {
+    "path": "graphics/milkdrop_hlsl_adapter.cpp",
+    "bytes": 66,
+    "sha256": "5072008a656cd44fba00fa6c2ddf8fa6650505040d2618a5bc0d5415fd90d71e"
+  },
+  {
+    "path": "graphics/milkdrop_player.h",
+    "bytes": 1459,
+    "sha256": "b801ff3ee3f0b50e6ec5043cbfda4c89d5fa7b0c6f74f1aecd59a32442f1e06b"
+  },
+  {
+    "path": "graphics/milkdrop_preset_equations.cpp",
+    "bytes": 70,
+    "sha256": "37af57136b31e5e2cd8245fdea849e43c2648e80e98abae08265d5fe3ac677df"
+  },
+  {
+    "path": "graphics/milkdrop_projectm_parser.cpp",
+    "bytes": 75,
+    "sha256": "f69f5e93fb7feff147594d1c2c27650a7822e52fcf897621755c28e10110193f"
+  },
+  {
+    "path": "graphics/milkdrop_texture_image.cpp",
+    "bytes": 1296,
+    "sha256": "51eecaec3be13e03e578f97d2b27fbd8c4015269d0df5b16290265046053acb2"
+  },
+  {
+    "path": "graphics/music_folder_browser.h",
+    "bytes": 2451,
+    "sha256": "7f29592d826afaa362b0f2bb3d3e80d9e4a5a4aee1d54900c94c51657fd00eba"
+  },
+  {
+    "path": "graphics/music_menu.h",
+    "bytes": 2864,
+    "sha256": "0263b3bb124638681cbc9d531dc95137e2243d295606c4db33d1c1caa0057a99"
+  },
+  {
+    "path": "graphics/music_navigation.h",
+    "bytes": 2592,
+    "sha256": "8231b22d8e71e726cb95834c9f21c2f5dd255845821c1bd43d767f588312d6c4"
+  },
+  {
+    "path": "graphics/music_search_input.h",
+    "bytes": 925,
+    "sha256": "8b225a6600a60d78c14c39f7ad163b84c22509d6f442caaf3c688fdacfe933fa"
+  },
+  {
+    "path": "graphics/pause_fade.h",
+    "bytes": 902,
+    "sha256": "378cefa1dc34c5bba4b8eaaa35f7a806dd49dfea1c4b154f0e1db9185ca2372e"
+  },
+  {
+    "path": "graphics/pcm_resampler.h",
+    "bytes": 3018,
+    "sha256": "30777c71b1dc53fa642ceb3642dd46ee60c85be6f03e9e1ed6b439c6872a3d7f"
+  },
+  {
+    "path": "graphics/performance_overlay.h",
+    "bytes": 2763,
+    "sha256": "5998be26af6398f721f844cbc15eaaa30063e67385dd33662ea431ae03631f0d"
+  },
+  {
+    "path": "graphics/playback_position.h",
+    "bytes": 752,
+    "sha256": "3b2a0b3c74e0a75e219885e6958b3f92aef440f537f53bbce4c4cdeeca5a7b4c"
+  },
+  {
+    "path": "graphics/player_hud.h",
+    "bytes": 4253,
+    "sha256": "389be4780fd8cf9038b26c8f2d40333281c15a17c76f3d11b669c0f008c02d72"
+  },
+  {
+    "path": "graphics/preset_cycle.h",
+    "bytes": 980,
+    "sha256": "c696f23037f51e2dd429e738607cf5124cdaac2953e0a2c58903afda3c608ed8"
+  },
+  {
+    "path": "graphics/radial_preset.h",
+    "bytes": 4596,
+    "sha256": "585c21aef21d25a12da423580896b4c85649b233207beda119329a9930ae6ad1"
+  },
+  {
+    "path": "graphics/settings_menu.h",
+    "bytes": 2658,
+    "sha256": "287f166e159c89cba7cd7194e466e4a591894a9bfac23cf804db66930f6c2cc8"
+  },
+  {
+    "path": "graphics/status_text.h",
+    "bytes": 4009,
+    "sha256": "62eb3eb9b4539dbbca542313e164b508623d3bfac6b2abc29f246cc75facc277"
+  },
+  {
+    "path": "graphics/storm_model.h",
+    "bytes": 6035,
+    "sha256": "bbb73173e8528f4dcf9e90b126f32f3909da4c6bd21afb13f68a957d244cc497"
+  },
+  {
+    "path": "graphics/texture_mapping.h",
+    "bytes": 982,
+    "sha256": "39595849f1b17b5c79d1a1647683953013bb1c3cec0d413e50bc2198333aa9ba"
+  },
+  {
+    "path": "graphics/third_party/AUDIO-LICENSES.txt",
+    "bytes": 10923,
+    "sha256": "15035e1a10d0e7ae06651615101904317a01859d59d408de16aa631cc872fd0f"
+  },
+  {
+    "path": "graphics/third_party/audio-sources.json",
+    "bytes": 425,
+    "sha256": "90f0e7917eab28d3b45d549155a2f09b0a8c1dafc1aa3701e87c2dd4af9778e8"
+  },
+  {
+    "path": "graphics/third_party/dr_flac.h",
+    "bytes": 549189,
+    "sha256": "b8078eeb5d523502eb7964508cd7ec8450bc79d383bec90aa17fd9e2fefd9c24"
+  },
+  {
+    "path": "graphics/third_party/dr_libs-commit.txt",
+    "bytes": 41,
+    "sha256": "455c2e764407d3a7459b985d978d2e2edc1663f9fa5e22d7662a41102cf4a9a7"
+  },
+  {
+    "path": "graphics/third_party/dr_mp3.h",
+    "bytes": 198998,
+    "sha256": "f5c8020eeebb79877184432efdd2651f24869f5bb8f379d45450fd0aed1ee915"
+  },
+  {
+    "path": "graphics/third_party/dr_wav.h",
+    "bytes": 203830,
+    "sha256": "a5a2209b04ceb9c41648cc17916b78116bcc2377ec0c63ac431d81235ddc9e89"
+  },
+  {
+    "path": "graphics/third_party/NotoSansJP-OFL.txt",
+    "bytes": 4388,
+    "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+  },
+  {
+    "path": "graphics/third_party/OpenOrbis-LICENSE.txt",
+    "bytes": 35149,
+    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  },
+  {
+    "path": "graphics/third_party/stb_vorbis.c",
+    "bytes": 191509,
+    "sha256": "490e8e3448d2039050083b8530c35a59c109b67407162a1eecff1ed3d50a975d"
+  },
+  {
+    "path": "graphics/touchpad_routing.h",
+    "bytes": 520,
+    "sha256": "3295b3991f71bc5e1f96a839efa716589a905515921fc49f75e12db64fb0d8c0"
+  },
+  {
+    "path": "graphics/track_library.h",
+    "bytes": 2438,
+    "sha256": "6492632591ace727e1b2026543a6179f66bafb5999f53e491a9d2be532bb12b5"
+  },
+  {
+    "path": "graphics/track_sequence.h",
+    "bytes": 1511,
+    "sha256": "8c5b2d67cf16bd86edb25376c9973ab1037e2da36e223d4bbc4f0c047bbbb302"
+  },
+  {
+    "path": "graphics/trigger_scrub.h",
+    "bytes": 1172,
+    "sha256": "e2803cee4000d066d728fd2ac936febd680ed9511a8e20938509100eecf605d2"
+  },
+  {
+    "path": "graphics/ui_preferences.cpp",
+    "bytes": 1171,
+    "sha256": "3900c9b0c41c6af53740a112e293e9a5dafcc6b8d2765ae96aef4e0f935491ee"
+  },
+  {
+    "path": "graphics/ui_preferences.h",
+    "bytes": 155,
+    "sha256": "eea784e29301cadb8c233b75413307bb68824bf44901d84f7c864c51496d1e2c"
+  },
+  {
+    "path": "graphics/ui_settings.h",
+    "bytes": 668,
+    "sha256": "265d42bb1a8e3c8fe2ec2436fbf762a2de950de47cd50ee8bcbdf7417cabd587"
+  },
+  {
+    "path": "graphics/ui_style.h",
+    "bytes": 1193,
+    "sha256": "386df41a1cedd7b65746db98d23420b8741736bb877c8b6111a551f1984c738c"
+  },
+  {
+    "path": "graphics/usb_folder_library.h",
+    "bytes": 613,
+    "sha256": "9fb1e569a2bb07331f3cadc9a154fb838869d92e43cf06a8b1eec17a8d307407"
+  },
+  {
+    "path": "graphics/usb_music_scan.h",
+    "bytes": 2319,
+    "sha256": "e348da9db9beb4b2431c10ff5d049b93bd06c2e0503617e595c80cfe7d4c18f5"
+  },
+  {
+    "path": "graphics/visualizer_library.h",
+    "bytes": 6454,
+    "sha256": "d0037e56f8db4d222c4800aee193e5fd1de3d3b6a8d3c5c178bbd1faf2c44df9"
+  },
+  {
+    "path": "graphics/visualizer_menu.h",
+    "bytes": 2627,
+    "sha256": "613ee61829a6cb387183c3fd3ec975e9e9a58d58643ae6ce16a21ea52bdd4dc6"
+  },
+  {
+    "path": "graphics/wormhole_preset.h",
+    "bytes": 5118,
+    "sha256": "c7ca384ad9f3d2e7793bcbe3e36cb0d49ee52d39de5002a0400eef9215ab40ca"
+  },
+  {
+    "path": "LICENSE",
+    "bytes": 35149,
+    "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  },
+  {
+    "path": "LICENSES/projectM-LGPL-2.1.txt",
+    "bytes": 24381,
+    "sha256": "7c35cd70dea6db64925d89ea15d5506487ac8e9db103aa7630123da2e02a78bd"
+  },
+  {
+    "path": "LICENSES/README.md",
+    "bytes": 1600,
+    "sha256": "e2724ef401559255f8457dedfbafd8e991bf69f8897f990d39dc8fadbc6a5d11"
+  },
+  {
+    "path": "patches/psbc-orbis.patch",
+    "bytes": 14739,
+    "sha256": "714aa5905ec84c40473f539633146a1151ece213c71ebb9240f9cc4c261dadbd"
+  },
+  {
+    "path": "sce_sys/icon0.png",
+    "bytes": 33506,
+    "sha256": "14263f8c636b5e209a6ea429916af0d1212a90d9b32302a97b0e05f878e3ba89"
+  },
+  {
+    "path": "source-dependencies.json",
+    "bytes": 1510,
+    "sha256": "10988545adc4da5ecefab57ba405c9b5693f9b6db5f3fe77b39c56bf1045bbbc"
+  },
+  {
+    "path": "tests/milkdrop_ps4/build_compiler.py",
+    "bytes": 2726,
+    "sha256": "da053b492dda320adb0e6b546408f4e7ab919e86a6c187fc21dd86c0ccb33606"
+  },
+  {
+    "path": "tests/milkdrop_ps4/build_eval.py",
+    "bytes": 5752,
+    "sha256": "0d7daa7b3bc3625ce2c51bf5ced4282ec0eace5158d157b817d69fa60f3a2e0b"
+  },
+  {
+    "path": "tests/milkdrop_ps4/build_glslang.py",
+    "bytes": 1045,
+    "sha256": "cd194f33394604af4cc7b3082c824abdca923173d2a795d8af829bc88f67ed5a"
+  },
+  {
+    "path": "tests/milkdrop_ps4/build_hlsl.py",
+    "bytes": 1179,
+    "sha256": "a55ba081df4372174709758cecb5f54b9d7f299336b8db3348d4206a180faf67"
+  },
+  {
+    "path": "tests/milkdrop_ps4/community-reference/Constants.hpp",
+    "bytes": 146,
+    "sha256": "8e628aec88db2044306f6f69c59d4f219b269fce4e17b8c3f5e66760f0a71877"
+  },
+  {
+    "path": "tests/milkdrop_ps4/community-reference/PerFrameContext.hpp",
+    "bytes": 173,
+    "sha256": "784cf208598086372043922c4351343e8173a5ad4d7b0e7775ae3ad146bb16f7"
+  },
+  {
+    "path": "tests/milkdrop_ps4/community-reference/PresetState.hpp",
+    "bytes": 348,
+    "sha256": "289afc0b6ee9e43e135e847a900676ef42f6d10fe5b6941c975ffde6b9029352"
+  },
+  {
+    "path": "tests/milkdrop_ps4/eval_optimizations.py",
+    "bytes": 1259,
+    "sha256": "6f592071a8a6e6dcd5140b9bf53af85227a7934f84c5660e470b85a74c910193"
+  },
+  {
+    "path": "tests/milkdrop_ps4/fix_gp4_dirs.py",
+    "bytes": 737,
+    "sha256": "b9cfd3db1e25905b107642c9332b3a8c13fd8fab1b2b0ba0453a12dec62a22b6"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/audio_reactivity.hpp",
+    "bytes": 2998,
+    "sha256": "5e88881e11701fd6d6ff7822f06645a0b4434e9e27bb89e6af731a39fed1028e"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/blur_config.hpp",
+    "bytes": 1196,
+    "sha256": "3935dd501041bcf155c326b61a3261807634d03a603b37b4b3296bed2f9d598d"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/bounded_shader_loops.hpp",
+    "bytes": 9810,
+    "sha256": "df6fb6052ea6f9e7579f2e453676ab0fec83702f6297fedaa59cbe85d2f29bf7"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/common_blur_shaders.hpp",
+    "bytes": 3224,
+    "sha256": "deb1b34de02f7eb4406ae22e9ad0a6c40a1f5a675fd130a8dd681d23229cab64"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/common_gpu.hpp",
+    "bytes": 23107,
+    "sha256": "561ccef5036ba53474d229786dc7b14a6f9f0e6c752467af4d1ebbef427ca40f"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/common_shader.cpp",
+    "bytes": 12457,
+    "sha256": "23d975189101f2a379fd16586e9b61f978af94316c98bf239a126cb40522b09a"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/common_shader.hpp",
+    "bytes": 517,
+    "sha256": "355f63eb5c8ba2456fda57e3766e15c54d8490549c7f2c441e2eed2d8609dd5d"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/community_bank.hpp",
+    "bytes": 9622,
+    "sha256": "8a7df5ee77304f18afbd303b6ece8a5d362fc0873a5e57f9f05651dabe4b9f17"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/curated_tour.hpp",
+    "bytes": 1645,
+    "sha256": "fc8d0c9410a230245f9f756d56c4a939b0398a8813dcdfc9123be66f9adf95e6"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/custom_shapes.hpp",
+    "bytes": 8599,
+    "sha256": "4edac4500e78c2bebb3aca1d7f9e648acd3897d57c39064f08567b7b5e9b2109"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/custom_waves.hpp",
+    "bytes": 7876,
+    "sha256": "a868de2ec3e0c50d48a8f76765074a66c51bf89a20d169a7df158905a634d9ae"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/engine_inputs.hpp",
+    "bytes": 953,
+    "sha256": "3a5fdc5b45da3eb293fceb1eb3f8fcc09a9fffc93b8b196629dce9885ac1a516"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/equation_budget.hpp",
+    "bytes": 618,
+    "sha256": "0bfcb6000011d58b24ead12c7dd7b4b326d9c617d1430089fc7ea628aabb320b"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/feedback_shader.h",
+    "bytes": 44168,
+    "sha256": "abcdbd5d9f013dc023085d75ad9a5689c9136d1fdf2a9058b40a2ebbc0eebf27"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/geometry_preset.hpp",
+    "bytes": 8038,
+    "sha256": "92681788ba19aea6d57bdd42a9be3f33ea346f8fa8301122af99c317e9932a49"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/geometry_renderer.hpp",
+    "bytes": 17341,
+    "sha256": "f1c333774a43f482a10ccbc0271ac13227928a86f7c071b4169b33c682a4e2f4"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/glsl_text_compiler.h",
+    "bytes": 3156,
+    "sha256": "b13185fadf861e53844b81d0e38bfbc65e01f34ac80df32bd25f282856d02b01"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/graphics.cpp",
+    "bytes": 8315,
+    "sha256": "0428aa1ab8eeb56ef97a14718f6e6401b1b8e1d0f4b8aeb6895e2a5ca981cf7c"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/graphics.h",
+    "bytes": 2056,
+    "sha256": "c141761f7130e02651bf398ea3b4e38808d598c1d9a5aafedb75fd6f14f1b753"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/hlsl_adapter.cpp",
+    "bytes": 6122,
+    "sha256": "6b58f3652f73670a7a211a86e82d38928c24209ef1210fa9de9cf8ec435da19d"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/hlsl_adapter.hpp",
+    "bytes": 455,
+    "sha256": "46d5e882ec284d23419aad3ad0493a0f2be0fcbb44887f76aa7a1ff8bc97923e"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/hue_field.hpp",
+    "bytes": 619,
+    "sha256": "e730532bea853387164a7b8f0a02f490308741026df6736b65db1bba72dc9660"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/hypnotic-link.x",
+    "bytes": 2156,
+    "sha256": "764887d04f0d648e3e708bf7344b46ddf2c03a65b3c85b3c7f8dce5601f0e8ac"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/import_access.cpp",
+    "bytes": 589,
+    "sha256": "8af49d05b8cead14366396eabc8ca60dab2c7625cae16191d9e6a89b3f6a49f4"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/import_profile.hpp",
+    "bytes": 5076,
+    "sha256": "88c67b8f7e3bb64373d090f0b051780ef2383c266a603a3cf6f2d84c2d2120d8"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/legacy_final_gpu.hpp",
+    "bytes": 5528,
+    "sha256": "906c4b85272f4c8fca60967f2a730873c89ce16b65b09949497bbb4f31fc5d93"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/legacy_final_math.hpp",
+    "bytes": 1446,
+    "sha256": "b02cd069dbc4d5a78b03770b8deb7f8418ce7f29dfcf1fcbe078c6adc932569b"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/legacy_final_shader.hpp",
+    "bytes": 1731,
+    "sha256": "7782d29dc98c78b386e8dcc7424908df4c1f6987e16baaf3751f990801087041"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/legacy_shake.hpp",
+    "bytes": 8165,
+    "sha256": "bb7ac4dd01ace8561d68569165685d2fbbe3526294853b303815dc2783a9793a"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/log.h",
+    "bytes": 513,
+    "sha256": "a6ebb2470fc561adcad41001fb09f7f09ffbf0b9636c837b18c867bc607bc257"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/main.cpp",
+    "bytes": 17075,
+    "sha256": "220de64d621d099169500c0cdc857278556986552cd2879249019004406bbe38"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/milkdrop_noise.hpp",
+    "bytes": 9855,
+    "sha256": "d5709db4e58eb7ac81ceb43246d2b58f2d916ba8f1c1846379bf6eab492541a8"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/native_audio.hpp",
+    "bytes": 5759,
+    "sha256": "a5cb71e97e154d4a0db9760118ae905dac7a0c42cf5a17c59a64839cf7a05275"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/native_composite.hpp",
+    "bytes": 2994,
+    "sha256": "0476ee4d7d2eff0dafd4e95c1886a773133dc4d2b13dee6a504233b7ff5c0aae"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/native_present.hpp",
+    "bytes": 10496,
+    "sha256": "c71d25fc793001f3b10ad6b790772d0d1cb9b237cc6fcca683db8e35482ec75e"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/performance_probe.hpp",
+    "bytes": 1083,
+    "sha256": "82a3d9f7caa6fbccc91ec69a1af7f083695e0f339480409f819da79c09034288"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/preset_equations.cpp",
+    "bytes": 14678,
+    "sha256": "8d088e102da8b9487b42845e6bc67fab91411dcf09aa878c87efd627890f06c2"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/preset_equations.hpp",
+    "bytes": 3404,
+    "sha256": "30f2faa9aea1e3450ae3345bcf598c0032aa702e44ab3a07b5a3636270c4efb2"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/preset_folder.hpp",
+    "bytes": 4150,
+    "sha256": "bca4893450f5c43a3bb4348bfb99d34837aeb9c7f67f4afad22c8a123e4d415e"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/preset_layers.hpp",
+    "bytes": 3456,
+    "sha256": "0600f0b38e3fed22928a2e9e1550cab5382d869242900c8d66cd0b8acd90e45b"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/preset_memory.hpp",
+    "bytes": 2699,
+    "sha256": "a2a47bc96fd49efc0e24da97c1123d33b1d0bd17f694b5b28b64e398d70ff2d5"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/preset_safety.hpp",
+    "bytes": 760,
+    "sha256": "4d03fb96eb67ad87544817f9298975b682eb780c97e987f133a6b827227c119c"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/projectm_parser.cpp",
+    "bytes": 191,
+    "sha256": "d3ee2680b555454e56260c1a7c190d984e064bdbe628b3db44aad89a3544a11f"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/raw_spectrum.hpp",
+    "bytes": 1802,
+    "sha256": "03722245aedf2039c7fc9e3d4e53989bc7b446fa06ddfab52a6fe00714f16741"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/recoverable_shader.hpp",
+    "bytes": 3759,
+    "sha256": "1d31f80ab9d78f6bdb89a9d4532f14ba26c8462b7016f6476d0f32144c8b8e44"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/resource_shader.h",
+    "bytes": 4679,
+    "sha256": "d784db9ccb667c790fd02b1d06b1af0c8954ffc46c68ed7b7f915b3aa98ae57a"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/shader_preprocess.hpp",
+    "bytes": 3451,
+    "sha256": "bb3962ac0ef5ca6af82497ce790d5998f908b829db5113b5f5540e47970ec0f2"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/shader_text.h",
+    "bytes": 702,
+    "sha256": "cbcaa47f53c1666cffaffd33510e8f3151143ffd990f97e943a7eb3797000008"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/shared_audio_decoder.cpp",
+    "bytes": 105,
+    "sha256": "e73e7597e35355f8c456835c6129b52954c0c503b2ba52f939fb2faf13d7f8e5"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/solid_fragment.h",
+    "bytes": 895,
+    "sha256": "4a4f711480fc682cd82f612a22f082541b5f5193a99751677ff0900df5c350b2"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/spatial_warp.hpp",
+    "bytes": 9910,
+    "sha256": "676a4d1074027388c76080b498c984bd40e40fb7f6f5ba65ebac488f76ddeee8"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/spirv_fixtures.h",
+    "bytes": 5495,
+    "sha256": "0e91d1b3c120ae52b52d111ad554f241936c6561ec64981726ed0723e3089d53"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/standard_wave_math.hpp",
+    "bytes": 8878,
+    "sha256": "a2e403e576816e1dc3ba4e546489af4b1f33f6cac3ef8003f7f8e9fd8edbe3e3"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/status_text.h",
+    "bytes": 2117,
+    "sha256": "9b6e06c2500d618905e9dd7d97cb7b9a6345da10a80ea04f5d4547ed509378fb"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/texture_gpu.hpp",
+    "bytes": 9518,
+    "sha256": "d0638ce60381ef23eb5d175cc6aaf5b328661ba330b125ea8d19f0e112131fab"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/texture_image.cpp",
+    "bytes": 1003,
+    "sha256": "b1383878b85118590ef697154a173f6af62d95c6f6bb84f597e1890b7a8c9060"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/texture_image.hpp",
+    "bytes": 227,
+    "sha256": "6c5a8f591c770846e4fdf5050b7ff0681b7479cab3e37a99d20c60d7df29a494"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/textured_shapes_gpu.hpp",
+    "bytes": 6024,
+    "sha256": "25a4ac14ded89e55eba65ce8f83cc6c14fa01c2efe7dcb44a7af904b522d00d6"
+  },
+  {
+    "path": "tests/milkdrop_ps4/native_graphics/transform_limits.hpp",
+    "bytes": 699,
+    "sha256": "2457bbae09c020648679456b90c790b71b1f374aa85119ee2981c63618461cbd"
+  },
+  {
+    "path": "tests/milkdrop_ps4/openorbis-glslang.cmake",
+    "bytes": 1225,
+    "sha256": "6df092c10b14ec01299a98b35ffef58a2aa37ad95dcc2db9f5f97c89bb816bc7"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/backend.cpp",
+    "bytes": 6888,
+    "sha256": "2438cd375d89634ddb8dfe163fdea4f226fc5a5416482d81e5b7edfc3216113a"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/bridge-timing-test.cpp",
+    "bytes": 797,
+    "sha256": "73ff824d7bb5b26b7f324859d4c6c8609dbbed3c136c035da66fff2ee215e326"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/browser-test.cpp",
+    "bytes": 765,
+    "sha256": "526dc5376cd3ca098ad5efd41f4a983c1eb58023654dc2830ae42b64028ed0c0"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/controls-routing-test.cpp",
+    "bytes": 25128,
+    "sha256": "967b15edf252c6feda0c456d8263634ac6b5ebfc3ca46c2c55160400a16ba99a"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/cube-orbit-test.cpp",
+    "bytes": 2932,
+    "sha256": "ce175608add5ac425e2418854a43dd3cb12660e7dbf0b01802ad5cbcebff0ba7"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/driver-preload-test.cpp",
+    "bytes": 1700,
+    "sha256": "b397425b9e31e75b958ab678220a5493f48d268dd62ab6b5f97494685a433bfc"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/driver-preload-under-test.hpp",
+    "bytes": 2429,
+    "sha256": "70ccf4e1cb87be395bcb535a2534e2178badef0afc6d85ad022dc03bc98846bb"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/file-io-cache-test.cpp",
+    "bytes": 2745,
+    "sha256": "ec687b564ce3922a2bfdd159991a8751da9b400fead4522205cd695641211518"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/file-io-test.cpp",
+    "bytes": 2106,
+    "sha256": "37c0276e326cf899833f19d5c1546034f35606c45c44cc331fa58edfff5aa2a0"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/hd-copy-test.cpp",
+    "bytes": 1098,
+    "sha256": "b78135f397289cab70807589e5a855921dc3aa72c19ebddea103c2a3851a5023"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/music-folders-test.cpp",
+    "bytes": 6859,
+    "sha256": "c7fa4412e7fad34705dfc7d14e33e04c36bba8728ed58a96f3f500a2d9443e14"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/music-menu-under-test.hpp",
+    "bytes": 4771,
+    "sha256": "667f6172a6fef6a83ea2c2b63011f770a8a2fee0a00d9006330e1f69deee2a84"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/music-navigation-test.cpp",
+    "bytes": 3449,
+    "sha256": "af873c49053e3005fb239a67738ed1a3eeb42fc79d8b887274d7da4e40fb594e"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/music-search-input-test.cpp",
+    "bytes": 933,
+    "sha256": "14f23a75348af47704ea74a5298c544b9d3f505c311ed699e0bf7db4b7032811"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/native-timing-test.cpp",
+    "bytes": 625,
+    "sha256": "2c050b9de2dfae92cd1e0f5d537c23acfe9e95da070594cdf8372535367906a4"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/parser-file-test.cpp",
+    "bytes": 1078,
+    "sha256": "67cbdf9c9df0d6333c28332a7f3468abe7f0068d0a68f912440141c974436cf8"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_backend_impl.hpp",
+    "bytes": 14419,
+    "sha256": "9ffdc68166fd7eeefdd1687dda72e0b8da0130de34fe43f77588c7d5bad07d5c"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_common_gpu.hpp",
+    "bytes": 23260,
+    "sha256": "aefa9d26205aa745e07396626735eadd0c676253256a729b9810d211fa445191"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_feedback_shader.h",
+    "bytes": 44289,
+    "sha256": "30cbf44d789727465a625868ae9dee32cb8f7f8fbb89003a953c2c0230fa5d72"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_hd.hpp",
+    "bytes": 3857,
+    "sha256": "fe138853aa285cb19dba278038cef876d970debd30bc3a53c1117f42b79da250"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_native_timing.hpp",
+    "bytes": 1117,
+    "sha256": "fd708998c068d817d187f435af14751ca06f446d48262b0d87b8bcbd501e0f3f"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_prepare.hpp",
+    "bytes": 6856,
+    "sha256": "d3d8095711c6ed51447ca50f637b03aac2572682b915d136a4e637fa37534de8"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_readback.hpp",
+    "bytes": 2538,
+    "sha256": "7bbdd528ecca7e0b6834ad069d645d8eb255688b4e72bc231de84f4bb681e222"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_shapes.hpp",
+    "bytes": 2660,
+    "sha256": "4a4b87e979adc4d357e3ed1a25210f4c3b0c54b8609c84d938868f44a179c5a8"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_spatial_warp.hpp",
+    "bytes": 10457,
+    "sha256": "49d2ed0ec026523c2375e442007ffc1e67ce671a65f3d4ddd57659572e8dc57a"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_triangle_batch.hpp",
+    "bytes": 823,
+    "sha256": "afa01efac6d3af0c2bce5e6915466055a8cc81c2cfd98a6eabf1bf93da33a41d"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_uniforms.hpp",
+    "bytes": 1570,
+    "sha256": "9e4c92b2e1d3fad4174791800f77a94cbc57d9a15c4c66c53b2bf7e19d85de67"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_wave_check.hpp",
+    "bytes": 1195,
+    "sha256": "adaa7173ac5de3f6c7f5c87f8cda7699ee6af8cc3a2f22a75ec2d5bfdc86a5e7"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/player_wave_pair.hpp",
+    "bytes": 588,
+    "sha256": "77cb0799371abec14de5f574208320323b3fc66bf24fb737387a23bfb0104ae0"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/prepare-worker-test.cpp",
+    "bytes": 5131,
+    "sha256": "e53b5d982d6448d18e4d4c85ec403e8ba2384f95b227e8e039734d2c61303aac"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/preset-cycle-test.cpp",
+    "bytes": 723,
+    "sha256": "d191ad53a71dd632f3b093cfcf68b8572223433c4eb45e240a3c9c1d081febf5"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/preset-cycle-timer-test.cpp",
+    "bytes": 1332,
+    "sha256": "825c9edf178a6d927441444dd5a531944b799d33b2f2e8dfdbc7fad05ba86a4b"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/projectm_parser_file_io.cpp",
+    "bytes": 4915,
+    "sha256": "84317f2e26249ea587fe6595a88dcbdaab391571e6ab3c372dbc36f493260ab5"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/readback-test.cpp",
+    "bytes": 2922,
+    "sha256": "e0d3369ffa7be44f32224039d024fd0490272b1c4f758c628af6d7e3efed5cec"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/touchpad-routing-test.cpp",
+    "bytes": 718,
+    "sha256": "4a7c35e366739321443bffd52be7fd441a45a57b70c23a15b5a3756b4bc23693"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/transport-test.cpp",
+    "bytes": 2517,
+    "sha256": "a657a43760a6a0af679a3bfe5e940c948a81f001e81c052a62a7f940bcc4152e"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/triangle-batch-test.cpp",
+    "bytes": 2058,
+    "sha256": "5dccae538ac1d007be89c93c1c866425adb414e3f65248b7d76e52642064da02"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/ui-settings-test.cpp",
+    "bytes": 1050,
+    "sha256": "45da80c77763402d96dc93e4353d9ffb1c898e17158a30f9ebf615535a7192e0"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/uniforms-original-under-test.hpp",
+    "bytes": 1789,
+    "sha256": "b762ef22d0738701de552a37419c21b6ae3455bfb37ce8063eaaa6574b4675de"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/uniforms-test.cpp",
+    "bytes": 3417,
+    "sha256": "38dc2c3160ee7671041e6fe80019c4587111466def34f64c029a7534508632bf"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/upload-test.cpp",
+    "bytes": 1042,
+    "sha256": "fea8b9ec485141f294cb38cc089045b98a52143afc524948c973224bc3e904a0"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/visualizer-library-test.cpp",
+    "bytes": 4008,
+    "sha256": "04af3a9ce1ef5a7fa2682ad3b6fe2a2d931fcdbdde66c10acfea16a97135d91c"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/warp-amplitude-test.cpp",
+    "bytes": 2079,
+    "sha256": "93c2d5cd9cb71b66edabf1f1b5fd3329851fdae233120fa1f0a8ad936753585d"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/wave-draw-original-under-test.hpp",
+    "bytes": 844,
+    "sha256": "414e9fcd07e0ca7847d6d3a473f88b735429ba7c914d2bf2c1303910b96c0366"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/wave-pair-test.cpp",
+    "bytes": 3009,
+    "sha256": "19d0ccdb7630fb23c29d742c69b0fee0369cd1595fd3ff499dcfdb4e07d31e00"
+  },
+  {
+    "path": "tools/create_player_gp4.py",
+    "bytes": 608,
+    "sha256": "a54269f97db1033eba767ebe31f2b868608adfbfa1b7f117c19d63a8e6d76e0a"
+  },
+  {
+    "path": "tools/draw_edge_glow_icon.py",
+    "bytes": 3195,
+    "sha256": "801a6f87b60eceb57e7f16d84b51d32b3e11184f8069e4498e528a6d50a555ec"
+  },
+  {
+    "path": "tools/fetch_source_dependencies.py",
+    "bytes": 1521,
+    "sha256": "d17dd9c35bcb2dc628c48aecf36eee932ccff2eb95babbbd8f9daa8b4c30b171"
+  },
+  {
+    "path": "tools/generate_katakana.ps1",
+    "bytes": 2158,
+    "sha256": "a20362a4c3e06c31013462ed9998d30b7e06e964dd4b01c05ed46f11c683a6e6"
+  },
+  {
+    "path": "tools/update_milkdrop_assets.py",
+    "bytes": 977,
+    "sha256": "e972afd7d5e2a9f1653d0ea0b4985c8a75a1b6e01fed86096bc3878106bd91eb"
+  }
+]
