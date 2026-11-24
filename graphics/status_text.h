@@ -1,6 +1,7 @@
 #pragma once
 #include <ctype.h>
 #include "ui_style.h"
+#include "ui_font.h"
 
 // Small diagnostic text for the playback smoke test; no font dependency.
 template<class Scene>
@@ -33,27 +34,31 @@ inline void drawStatusText(Scene *scene, const char *text, int y, int startX = 6
     };
     static const unsigned char terminalDigits[10][3]={{31,17,31},{18,31,16},{29,21,23},{21,21,31},{7,4,31},{23,21,29},{31,21,29},{1,29,3},{31,21,31},{23,21,31}};
     color=uiColor(color);const int font=currentUiSettings().font;
+    if(font>=3)drawUiFont(scene,text,y,startX,maxChars,color,font);
+    int cursor=startX;
     for (int n = 0; text[n] && n < maxChars; ++n)
     {
         const unsigned char c = (unsigned char)toupper((unsigned char)text[n]);
+        const int characterX=cursor;cursor+=uiGlyphAdvance((unsigned char)text[n],font);
+        if(font>=3&&c<128)continue;
         if(c>=141&&c<=143){
-            const int xx=startX+n*18,yy=y+5;
+            const int xx=characterX,yy=y+5;
             scene->DrawRectangle(xx,yy,17,2,color);scene->DrawRectangle(xx,yy+10,17,2,color);scene->DrawRectangle(xx,yy,2,12,color);scene->DrawRectangle(xx+15,yy,2,12,color);
             if(c==142)scene->DrawRectangle(xx+3,yy+3,5,6,color);else if(c==143)scene->DrawRectangle(xx+9,yy+3,5,6,color);else{scene->DrawRectangle(xx+5,yy+5,2,2,color);scene->DrawRectangle(xx+10,yy+5,2,2,color);}continue;
         }
-        if(font==1&&((c>='A'&&c<='Z')||(c>='0'&&c<='9'))){for(int x=0;x<3;++x){unsigned bits=c>='A'?terminalLetters[c-'A'][x]:terminalDigits[c-'0'][x];for(int row=0;row<5;++row)if(bits&(1<<row))scene->DrawRectangle(startX+n*18+x*4+1,y+row*4+1,4,4,color);}continue;}
+        if(font==1&&((c>='A'&&c<='Z')||(c>='0'&&c<='9'))){for(int x=0;x<3;++x){unsigned bits=c>='A'?terminalLetters[c-'A'][x]:terminalDigits[c-'0'][x];for(int row=0;row<5;++row)if(bits&(1<<row))scene->DrawRectangle(characterX+x*4+1,y+row*4+1,4,4,color);}continue;}
         for (int x = 0; x < 5; ++x)
         {
             unsigned char bits = c >= 'A' && c <= 'Z' ? letters[c-'A'][x]
                                : c >= '0' && c <= '9' ? digits[c-'0'][x]
                                : c >= 128 && c < 136 ? buttons[c-128][x]
                                : c >= 136 && c < 141 ? media[c-136][x]
-                               : c == '-' ? 8 : c == '_' ? 64 : c == '>' ? (x == 1 ? 34 : x == 2 ? 20 : x == 3 ? 8 : 0) : c == '.' ? 64
+                               : c == '+' ? (x==2?62:8) : c=='%' ? (x==0?35:x==1?19:x==2?8:x==3?100:98) : c == '-' ? 8 : c == '_' ? 64 : c == '>' ? (x == 1 ? 34 : x == 2 ? 20 : x == 3 ? 8 : 0) : c == '.' ? 64
                                : c == '/' ? (64 >> x) : c == ':' ? (x == 2 ? 20 : 0) : 0;
             for (int row = 0; row < 7; ++row)
                 if (bits & (1 << row))
                 {
-                    const int xx=startX+n*18+x*3,yy=y+row*3;
+                    const int xx=characterX+x*3,yy=y+row*3;
                     if(font==2&&c<128){scene->DrawRectangle(xx+1,yy,1,3,color);scene->DrawRectangle(xx,yy+1,3,1,color);}
                     else scene->DrawRectangle(xx,yy,3,3,color);
                 }

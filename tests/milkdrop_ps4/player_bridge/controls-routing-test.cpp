@@ -8,6 +8,7 @@ static TouchpadRouting touchpadRouting;
 static CubeOrbitSettings cubeOrbitSettings;
 #include "music_navigation.h"
 #include "visualizer_library.h"
+#include "app_settings_model.h"
 #include "menu_repeat.h"
 #include "trigger_scrub.h"
 #include "preset_cycle.h"
@@ -34,7 +35,7 @@ struct VisualizerState
     bool microphone=false;
     bool menuOpen = true;
     bool visualizerMenuOpen = false;
-    bool appSettingsOpen=false,appCreditsOpen=false,appMicTestOpen=false,settingsReturnMusic=false,settingsReturnVisualizers=false;int appSettingsRow=0;
+    bool appSettingsOpen=false,appCreditsOpen=false,appMicTestOpen=false,settingsReturnMusic=false,settingsReturnVisualizers=false;int appSettingsRow=0,appSettingsTab=0,appSettingsRows[4]={},appEqRow=0;bool appEqOpen=false,volumeOpen=false;
     bool matrixSettingsOpen=false,matrixSettingsReturn=false;
     bool builtinSettingsOpen=false,builtinSettingsReturn=false;int builtinSettingsPreset=5,builtinSettingsRow=0;
     int matrixSettingSelection=0;
@@ -89,9 +90,9 @@ void updateControls(int pad, VisualizerState &state, uint32_t &previousButtons)
     const uint32_t pressed = data.buttons & ~previousButtons;
     previousButtons = data.buttons;
     const uint32_t directions=ORBIS_PAD_BUTTON_UP|ORBIS_PAD_BUTTON_DOWN|ORBIS_PAD_BUTTON_LEFT|ORBIS_PAD_BUTTON_RIGHT;
-    int context=musicSearch.open?1:presetCycle.menuOpen?2:(state.matrixSettingsOpen||state.builtinSettingsOpen||state.appSettingsOpen)?3:state.visualizerMenuOpen?4:state.menuOpen?5:6;
-    const uint32_t nav=pressed|repeat.update(context<6?data.buttons:0,directions,ORBIS_PAD_BUTTON_LEFT|ORBIS_PAD_BUTTON_RIGHT,now,context);
-    const bool noMenu=!state.menuOpen&&!state.visualizerMenuOpen&&!state.matrixSettingsOpen&&!state.builtinSettingsOpen&&!state.appSettingsOpen&&!musicSearch.open&&!presetCycle.menuOpen;
+    int context=state.volumeOpen?7:musicSearch.open?1:presetCycle.menuOpen?2:(state.matrixSettingsOpen||state.builtinSettingsOpen||state.appSettingsOpen)?3:state.visualizerMenuOpen?4:state.menuOpen?5:6;
+    const uint32_t nav=pressed|repeat.update(context!=6?data.buttons:0,directions,ORBIS_PAD_BUTTON_LEFT|ORBIS_PAD_BUTTON_RIGHT,now,context);
+    const bool noMenu=!state.volumeOpen&&!state.menuOpen&&!state.visualizerMenuOpen&&!state.matrixSettingsOpen&&!state.builtinSettingsOpen&&!state.appSettingsOpen&&!musicSearch.open&&!presetCycle.menuOpen;
     const bool wasHud=state.hud.visible(now,state.paused);
     if(noMenu && (pressed||data.analogButtons.l2>24||data.analogButtons.r2>24)){
         if(!wasHud)state.hudSelection=3;state.hud.reveal(now);
@@ -99,9 +100,12 @@ void updateControls(int pad, VisualizerState &state, uint32_t &previousButtons)
     if((data.buttons&(ORBIS_PAD_BUTTON_L3|ORBIS_PAD_BUTTON_R3))==(ORBIS_PAD_BUTTON_L3|ORBIS_PAD_BUTTON_R3) && (pressed&(ORBIS_PAD_BUTTON_L3|ORBIS_PAD_BUTTON_R3))){state.diagnostics=!state.diagnostics;milkdropBridgeTiming.debug(state.diagnostics,now);scrub.reset();return;}
     if(noMenu && (pressed&ORBIS_PAD_BUTTON_L3)){state.hud.toggle(now);scrub.reset();return;}
     if(noMenu&&state.diagnostics&&(pressed&ORBIS_PAD_BUTTON_SQUARE)){visualizerLibrary.renderHD=!visualizerLibrary.renderHD;visualizerLibrary.touch(now);milkdropPlayerRequestHD(visualizerLibrary.renderHD);return;}
+    if(pressed&(ORBIS_PAD_BUTTON_OPTIONS|ORBIS_PAD_BUTTON_TOUCH_PAD|ORBIS_PAD_BUTTON_TRIANGLE))state.volumeOpen=false;
     if(pressed&ORBIS_PAD_BUTTON_OPTIONS){
+        state.appEqOpen=false;
         if(state.appMicTestOpen){pauseMicrophone(!state.microphone);state.appMicTestOpen=false;}
-        if(state.appSettingsOpen){state.appSettingsOpen=false;state.appCreditsOpen=false;state.menuOpen=state.settingsReturnMusic;state.visualizerMenuOpen=state.settingsReturnVisualizers;}
+        
+    if(state.appSettingsOpen){state.appSettingsOpen=false;state.appCreditsOpen=false;state.menuOpen=state.settingsReturnMusic;state.visualizerMenuOpen=state.settingsReturnVisualizers;}
         else{state.settingsReturnMusic=state.menuOpen;state.settingsReturnVisualizers=state.visualizerMenuOpen;state.appSettingsOpen=true;state.appCreditsOpen=false;state.menuOpen=state.visualizerMenuOpen=false;state.matrixSettingsOpen=state.builtinSettingsOpen=false;musicSearch.open=false;presetCycle.menuOpen=false;}
         scrub.reset();return;
     }
@@ -109,30 +113,32 @@ void updateControls(int pad, VisualizerState &state, uint32_t &previousButtons)
         const bool search=(pressed&ORBIS_PAD_BUTTON_L3)||touchpadRouting.searchSide(now);
         const bool visualSearch=state.visualizerMenuOpen;
         if(state.appMicTestOpen){pauseMicrophone(!state.microphone);state.appMicTestOpen=false;}
-        state.appSettingsOpen=state.appCreditsOpen=false;state.matrixSettingsOpen=state.builtinSettingsOpen=false;presetCycle.menuOpen=false;
+        state.appSettingsOpen=state.appCreditsOpen=state.appEqOpen=false;state.matrixSettingsOpen=state.builtinSettingsOpen=false;presetCycle.menuOpen=false;
         if(search){presetSearchTarget=visualSearch;if(!visualSearch){state.menuOpen=true;state.visualizerMenuOpen=false;}musicSearch.start(presetSearchTarget?visualizerLibrary.query.c_str():musicNavigation.searchResults?musicBrowser.query:"");}
         else{state.menuOpen=true;state.visualizerMenuOpen=false;musicSearch.open=false;}
         scrub.reset();return;
     }
+    if(state.volumeOpen){scrub.reset();auto &audio=visualizerLibrary.appearance.audio;if(nav&(ORBIS_PAD_BUTTON_UP|ORBIS_PAD_BUTTON_DOWN)){audio.adjustVolume((nav&ORBIS_PAD_BUTTON_UP)?1:-1);visualizerLibrary.touch(now);}if(pressed&ORBIS_PAD_BUTTON_CIRCLE){audio.muted=!audio.muted;visualizerLibrary.touch(now);}if(pressed&ORBIS_PAD_BUTTON_CROSS)state.volumeOpen=false;state.hud.reveal(now);return;}
     if(state.appSettingsOpen){
         scrub.reset();
         if(state.appMicTestOpen){if(pressed&(ORBIS_PAD_BUTTON_CIRCLE|ORBIS_PAD_BUTTON_CROSS)){pauseMicrophone(!state.microphone);state.appMicTestOpen=false;}return;}
         if(state.appCreditsOpen){if(pressed&(ORBIS_PAD_BUTTON_CIRCLE|ORBIS_PAD_BUTTON_CROSS))state.appCreditsOpen=false;return;}
-        if((nav&ORBIS_PAD_BUTTON_UP)&&state.appSettingsRow>0)--state.appSettingsRow;
-        if((nav&ORBIS_PAD_BUTTON_DOWN)&&state.appSettingsRow<7)++state.appSettingsRow;
-        const int d=(nav&ORBIS_PAD_BUTTON_RIGHT)?1:(nav&ORBIS_PAD_BUTTON_LEFT)?-1:0;
-        if(d){
-            const int dir=d?d:1,row=state.appSettingsRow;auto &ui=visualizerLibrary.appearance;
-            if(row==0)ui.theme=(ui.theme+UiSettings::themeCount+dir)%UiSettings::themeCount;
-            else if(row==1)ui.font=(ui.font+UiSettings::fontCount+dir)%UiSettings::fontCount;
-            else if(row==2){ui.hudSeconds=UiSettings::bound(ui.hudSeconds+dir,3,15);state.hud.delay=(uint64_t)ui.hudSeconds*1000000;}
-            else if(row==3){state.sensitivity=UiSettings::bound(state.sensitivity+dir,0,6);ui.sensitivity=state.sensitivity;}
-            else if(row==4){visualizerLibrary.renderHD=!visualizerLibrary.renderHD;milkdropPlayerRequestHD(visualizerLibrary.renderHD);}
-            else if(row==5)ui.stats=!ui.stats;
-
-            if(row<6)visualizerLibrary.touch(now);
+        auto &ui=visualizerLibrary.appearance;
+        if(state.appEqOpen){
+            if((nav&ORBIS_PAD_BUTTON_LEFT)&&state.appEqRow>0)--state.appEqRow;
+            if((nav&ORBIS_PAD_BUTTON_RIGHT)&&state.appEqRow<4)++state.appEqRow;
+            int gain=(nav&ORBIS_PAD_BUTTON_UP)?1:(nav&ORBIS_PAD_BUTTON_DOWN)?-1:0;
+            if(gain){ui.audio.bands[state.appEqRow]=UiSettings::bound(ui.audio.bands[state.appEqRow]+gain,-12,12);visualizerLibrary.touch(now);}
+            if(pressed&ORBIS_PAD_BUTTON_SQUARE){ui.audio.flat();visualizerLibrary.touch(now);}
+            if(pressed&ORBIS_PAD_BUTTON_TRIANGLE){ui.audio.eqEnabled=!ui.audio.eqEnabled;visualizerLibrary.touch(now);}
+            if(pressed&ORBIS_PAD_BUTTON_CIRCLE)state.appEqOpen=false;return;
         }
-        if(pressed&ORBIS_PAD_BUTTON_CROSS){if(state.appSettingsRow==7)state.appCreditsOpen=true;else if(state.appSettingsRow==6){state.appMicTestOpen=true;pauseMicrophone(false);startMicrophone();}else visualizerLibrary.touch(now);}
+        if(pressed&(ORBIS_PAD_BUTTON_L1|ORBIS_PAD_BUTTON_R1)){state.appSettingsRows[state.appSettingsTab]=state.appSettingsRow;state.appSettingsTab=(state.appSettingsTab+((pressed&ORBIS_PAD_BUTTON_R1)?1:3))%4;state.appSettingsRow=state.appSettingsRows[state.appSettingsTab];return;}
+        if((nav&ORBIS_PAD_BUTTON_UP)&&state.appSettingsRow>0)--state.appSettingsRow;
+        if((nav&ORBIS_PAD_BUTTON_DOWN)&&state.appSettingsRow<appSettingsRowCount(state.appSettingsTab)-1)++state.appSettingsRow;
+        const auto setting=appSettingsAction(state.appSettingsTab,state.appSettingsRow);const int d=(nav&ORBIS_PAD_BUTTON_RIGHT)?1:(nav&ORBIS_PAD_BUTTON_LEFT)?-1:0;
+        if(d){switch(setting){case AppSetting::Volume:ui.audio.adjustVolume(d);break;case AppSetting::Style:ui.setStyle(1-ui.style);break;case AppSetting::Colour:ui.theme=(ui.theme+UiSettings::themeCount+d)%UiSettings::themeCount;break;case AppSetting::Font:ui.setFont((ui.font+UiSettings::fontCount+d)%UiSettings::fontCount);break;case AppSetting::HudTimeout:ui.hudSeconds=UiSettings::bound(ui.hudSeconds+d,3,15);state.hud.delay=(uint64_t)ui.hudSeconds*1000000;break;case AppSetting::Sensitivity:state.sensitivity=UiSettings::bound(state.sensitivity+d,0,6);ui.sensitivity=state.sensitivity;break;case AppSetting::Quality:visualizerLibrary.renderHD=!visualizerLibrary.renderHD;milkdropPlayerRequestHD(visualizerLibrary.renderHD);break;case AppSetting::Stats:ui.stats=!ui.stats;break;case AppSetting::DebugComparison:state.diagnostics=!state.diagnostics;milkdropBridgeTiming.debug(state.diagnostics,now);break;default:break;}visualizerLibrary.touch(now);}
+        if(pressed&ORBIS_PAD_BUTTON_CROSS){switch(setting){case AppSetting::Volume:ui.audio.muted=!ui.audio.muted;visualizerLibrary.touch(now);break;case AppSetting::Equalizer:state.appEqOpen=true;state.appEqRow=0;break;case AppSetting::DebugComparison:state.diagnostics=!state.diagnostics;milkdropBridgeTiming.debug(state.diagnostics,now);break;case AppSetting::Credits:state.appCreditsOpen=true;break;case AppSetting::MicTest:state.appMicTestOpen=true;pauseMicrophone(false);startMicrophone();break;default:visualizerLibrary.touch(now);break;}}
         if(pressed&ORBIS_PAD_BUTTON_CIRCLE){state.appSettingsOpen=false;state.menuOpen=state.settingsReturnMusic;state.visualizerMenuOpen=state.settingsReturnVisualizers;}
         return;
     }
@@ -247,8 +253,8 @@ void updateControls(int pad, VisualizerState &state, uint32_t &previousButtons)
     // Settings must remain reachable while paused or while the HUD owns arrows.
     if((pressed&ORBIS_PAD_BUTTON_SQUARE)&&(state.preset==5||state.preset==6||state.preset==9)){state.builtinSettingsOpen=true;state.builtinSettingsPreset=state.preset;state.builtinSettingsRow=0;state.builtinSettingsReturn=false;return;}
     if(!state.microphone && state.hud.visible(now,state.paused)){
-        if(wasHud&&(nav&ORBIS_PAD_BUTTON_LEFT))state.hudSelection=(state.hudSelection+5)%6;
-        if(wasHud&&(nav&ORBIS_PAD_BUTTON_RIGHT))state.hudSelection=(state.hudSelection+1)%6;
+        if(wasHud&&(nav&ORBIS_PAD_BUTTON_LEFT))state.hudSelection=(state.hudSelection+6)%7;
+        if(wasHud&&(nav&ORBIS_PAD_BUTTON_RIGHT))state.hudSelection=(state.hudSelection+1)%7;
         if(pressed&ORBIS_PAD_BUTTON_CROSS){switch(state.hudSelection){
           case 0:toggleUsbShuffle();break;
           case 1:cycleUsbRepeat();break;
@@ -256,6 +262,7 @@ void updateControls(int pad, VisualizerState &state, uint32_t &previousButtons)
           case 3:if(usbAudioFinished() && usbActiveTrack()>=0){playUsbTrack(usbActiveTrack());state.paused=false;}else state.paused=!state.paused;state.hud.reveal(now);break;
           case 4:stepUsbTrack(1);break;
           case 5:presetCycle.begin();break;
+          case 6:state.volumeOpen=true;break;
         }}if(state.paused || (pressed&ORBIS_PAD_BUTTON_CROSS) || (wasHud&&(pressed&(ORBIS_PAD_BUTTON_LEFT|ORBIS_PAD_BUTTON_RIGHT))))return;
     }
     if(state.diagnostics && state.preset==11 && (pressed&ORBIS_PAD_BUTTON_R3)){milkdropBridgeTiming.manual(now);printf("HYPNOTIC MILKDROP BRIDGE MANUAL MODE %u\n",milkdropBridgeTiming.mode);return;}
@@ -286,6 +293,11 @@ void updateControls(int pad, VisualizerState &state, uint32_t &previousButtons)
         --state.sensitivity;
 }
 
+// Render a snapshot of the PCM samples actually submitted for playback.
+// Render a snapshot of the PCM samples actually submitted for playback.
+// Render a snapshot of the PCM samples actually submitted for playback.
+// Render a snapshot of the PCM samples actually submitted for playback.
+// Render a snapshot of the PCM samples actually submitted for playback.
 int main(){VisualizerState state;state.menuOpen=false;milkdropBrowser.scanned=true;uint32_t previous=0;
  auto frame=[&](uint32_t buttons,uint64_t dt=16667){clockUs+=dt;fake.buttons=buttons;updateControls(0,state,previous);};
  auto press=[&](uint32_t buttons){frame(0);frame(buttons);};
@@ -295,12 +307,12 @@ int main(){VisualizerState state;state.menuOpen=false;milkdropBrowser.scanned=tr
  press(ORBIS_PAD_BUTTON_L3);assert(musicSearch.open);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!musicSearch.open);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!state.menuOpen);
  // A remote click with no current/recent position falls back to Music.
  fake.touch.fingers=0;frame(0,300000);press(ORBIS_PAD_BUTTON_TOUCH_PAD);assert(state.menuOpen&&!musicSearch.open);
- press(ORBIS_PAD_BUTTON_OPTIONS);assert(state.appSettingsOpen&&!state.menuOpen);int theme=visualizerLibrary.appearance.theme;press(ORBIS_PAD_BUTTON_RIGHT);assert(visualizerLibrary.appearance.theme==(theme+1)%5&&visualizerLibrary.dirty);press(ORBIS_PAD_BUTTON_DOWN);press(ORBIS_PAD_BUTTON_RIGHT);assert(visualizerLibrary.appearance.font==1);
- frame(ORBIS_PAD_BUTTON_DOWN,400000);assert(state.appSettingsRow>=2);state.appSettingsRow=2;int delay=visualizerLibrary.appearance.hudSeconds;press(ORBIS_PAD_BUTTON_RIGHT);assert(state.hud.delay==(uint64_t)(delay+1)*1000000);
- state.appSettingsRow=7;press(ORBIS_PAD_BUTTON_CROSS);assert(state.appCreditsOpen);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!state.appCreditsOpen&&state.appSettingsOpen);press(ORBIS_PAD_BUTTON_OPTIONS);assert(!state.appSettingsOpen&&state.menuOpen);
+ press(ORBIS_PAD_BUTTON_OPTIONS);assert(state.appSettingsOpen&&!state.menuOpen);assert(state.appSettingsTab==0);press(ORBIS_PAD_BUTTON_L1);assert(state.appSettingsTab==3);press(ORBIS_PAD_BUTTON_L1);assert(state.appSettingsTab==2);press(ORBIS_PAD_BUTTON_RIGHT);assert(visualizerLibrary.appearance.style==1&&visualizerLibrary.appearance.font==3);press(ORBIS_PAD_BUTTON_DOWN);int theme=visualizerLibrary.appearance.theme;press(ORBIS_PAD_BUTTON_RIGHT);assert(visualizerLibrary.appearance.theme==(theme+1)%UiSettings::themeCount&&visualizerLibrary.dirty);press(ORBIS_PAD_BUTTON_DOWN);press(ORBIS_PAD_BUTTON_RIGHT);assert(visualizerLibrary.appearance.font==4);
+ frame(ORBIS_PAD_BUTTON_DOWN,400000);assert(state.appSettingsRow==2);state.appSettingsTab=3;state.appSettingsRow=0;int delay=visualizerLibrary.appearance.hudSeconds;press(ORBIS_PAD_BUTTON_RIGHT);assert(state.hud.delay==(uint64_t)(delay+1)*1000000);
+ state.appSettingsTab=3;state.appSettingsRow=4;press(ORBIS_PAD_BUTTON_CROSS);assert(state.appCreditsOpen);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!state.appCreditsOpen&&state.appSettingsOpen);press(ORBIS_PAD_BUTTON_OPTIONS);assert(!state.appSettingsOpen&&state.menuOpen);
  press(ORBIS_PAD_BUTTON_TRIANGLE);assert(state.visualizerMenuOpen&&!state.menuOpen);fake.touch.fingers=1;fake.touch.touch[0].x=100;press(ORBIS_PAD_BUTTON_TOUCH_PAD);assert(musicSearch.open&&presetSearchTarget);press(ORBIS_PAD_BUTTON_CIRCLE);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!state.visualizerMenuOpen);
  // Settings owns all input while paused, and returns to the previous menu.
- state.paused=true;press(ORBIS_PAD_BUTTON_OPTIONS);assert(state.appSettingsOpen);state.appSettingsRow=5;press(ORBIS_PAD_BUTTON_RIGHT);press(ORBIS_PAD_BUTTON_CROSS);assert(visualizerLibrary.appearance.stats&&state.paused);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!state.appSettingsOpen&&state.paused);
+ state.paused=true;press(ORBIS_PAD_BUTTON_OPTIONS);assert(state.appSettingsOpen);state.appSettingsTab=3;state.appSettingsRow=1;press(ORBIS_PAD_BUTTON_RIGHT);press(ORBIS_PAD_BUTTON_CROSS);assert(visualizerLibrary.appearance.stats&&state.paused);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!state.appSettingsOpen&&state.paused);
  state.preset=5;press(ORBIS_PAD_BUTTON_SQUARE);assert(state.builtinSettingsOpen);int variation=state.sandVariation;press(ORBIS_PAD_BUTTON_RIGHT);assert(state.sandVariation==(variation+1)%4);press(ORBIS_PAD_BUTTON_CIRCLE);
  state.preset=6;press(ORBIS_PAD_BUTTON_SQUARE);assert(state.builtinSettingsOpen&&state.builtinSettingsPreset==6);state.builtinSettingsRow=1;int trail=state.scopeTrail;press(ORBIS_PAD_BUTTON_RIGHT);assert(state.scopeTrail==(trail+1)%4);press(ORBIS_PAD_BUTTON_CIRCLE);
  state.preset=9;press(ORBIS_PAD_BUTTON_SQUARE);assert(state.builtinSettingsOpen&&state.builtinSettingsPreset==9);int rotation=cubeOrbitSettings.rotation;press(ORBIS_PAD_BUTTON_RIGHT);assert(cubeOrbitSettings.rotation==rotation+3);press(ORBIS_PAD_BUTTON_CIRCLE);
@@ -309,7 +321,16 @@ int main(){VisualizerState state;state.menuOpen=false;milkdropBrowser.scanned=tr
  // Disconnect discards remembered touch position.
  fake.connected=false;frame(0);fake.connected=true;fake.touch.fingers=0;press(ORBIS_PAD_BUTTON_TOUCH_PAD);assert(state.menuOpen&&!musicSearch.open);
  // Mic Test temporarily captures input without changing the USB source.
- press(ORBIS_PAD_BUTTON_OPTIONS);state.appSettingsRow=6;state.microphone=false;int starts=micStartsTest;press(ORBIS_PAD_BUTTON_CROSS);assert(state.appMicTestOpen&&micStartsTest==starts+1&&!micPausedTest&&!state.microphone);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!state.appMicTestOpen&&state.appSettingsOpen&&micPausedTest);
+ press(ORBIS_PAD_BUTTON_OPTIONS);state.appSettingsTab=3;state.appSettingsRow=3;state.microphone=false;int starts=micStartsTest;press(ORBIS_PAD_BUTTON_CROSS);assert(state.appMicTestOpen&&micStartsTest==starts+1&&!micPausedTest&&!state.microphone);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!state.appMicTestOpen&&state.appSettingsOpen&&micPausedTest);
  state.microphone=true;press(ORBIS_PAD_BUTTON_CROSS);assert(state.appMicTestOpen&&!micPausedTest);press(ORBIS_PAD_BUTTON_OPTIONS);assert(!state.appMicTestOpen&&!state.appSettingsOpen&&!micPausedTest&&state.microphone);
- press(ORBIS_PAD_BUTTON_OPTIONS);state.appSettingsRow=6;press(ORBIS_PAD_BUTTON_CROSS);fake.touch.fingers=1;fake.touch.touch[0].x=1500;press(ORBIS_PAD_BUTTON_TOUCH_PAD);assert(!state.appMicTestOpen&&!state.appSettingsOpen&&state.menuOpen&&state.microphone&&!micPausedTest);
- puts("PASS actual controls: split touch clicks, contact ignored, recent/missing coordinates, L3 fallback, contextual search/apply, OPTIONS settings/credits/return, themes/fonts/HUD/stats, paused builtin menus, scope trail, playback and disconnect");}
+ press(ORBIS_PAD_BUTTON_OPTIONS);state.appSettingsTab=3;state.appSettingsRow=3;press(ORBIS_PAD_BUTTON_CROSS);fake.touch.fingers=1;fake.touch.touch[0].x=1500;press(ORBIS_PAD_BUTTON_TOUCH_PAD);assert(!state.appMicTestOpen&&!state.appSettingsOpen&&state.menuOpen&&state.microphone&&!micPausedTest);
+ state.microphone=false;state.menuOpen=false;state.appSettingsOpen=false;state.paused=false;state.hud.reveal(clockUs);state.hudSelection=6;press(ORBIS_PAD_BUTTON_CROSS);assert(state.volumeOpen);visualizerLibrary.appearance.audio.volume=50;press(ORBIS_PAD_BUTTON_UP);assert(visualizerLibrary.appearance.audio.volume==55);press(ORBIS_PAD_BUTTON_CIRCLE);assert(visualizerLibrary.appearance.audio.muted&&!state.paused&&state.volumeOpen);press(ORBIS_PAD_BUTTON_CROSS);assert(!state.volumeOpen&&!state.paused);
+ press(ORBIS_PAD_BUTTON_OPTIONS);state.appSettingsTab=0;state.appSettingsRow=1;press(ORBIS_PAD_BUTTON_CROSS);assert(state.appEqOpen);press(ORBIS_PAD_BUTTON_UP);assert(visualizerLibrary.appearance.audio.bands[0]==1);press(ORBIS_PAD_BUTTON_RIGHT);press(ORBIS_PAD_BUTTON_DOWN);assert(state.appEqRow==1&&visualizerLibrary.appearance.audio.bands[1]==-1);bool enabled=visualizerLibrary.appearance.audio.eqEnabled;press(ORBIS_PAD_BUTTON_TRIANGLE);assert(visualizerLibrary.appearance.audio.eqEnabled!=enabled&&state.appEqOpen);press(ORBIS_PAD_BUTTON_SQUARE);assert(visualizerLibrary.appearance.audio.isFlat());press(ORBIS_PAD_BUTTON_CIRCLE);assert(!state.appEqOpen&&state.appSettingsOpen);press(ORBIS_PAD_BUTTON_OPTIONS);
+ press(ORBIS_PAD_BUTTON_OPTIONS);state.appSettingsTab=3;state.appSettingsRow=2;bool debug=state.diagnostics;press(ORBIS_PAD_BUTTON_CROSS);assert(state.diagnostics!=debug);press(ORBIS_PAD_BUTTON_CIRCLE);
+ state.menuOpen=state.visualizerMenuOpen=state.appSettingsOpen=false;state.paused=false;state.microphone=false;state.hud.reveal(clockUs);state.hudSelection=5;presetCycle.enabled=false;
+ press(ORBIS_PAD_BUTTON_CROSS);assert(presetCycle.menuOpen&&!presetCycle.enabled&&!presetCycle.draftEnabled);
+ press(ORBIS_PAD_BUTTON_UP);press(ORBIS_PAD_BUTTON_RIGHT);assert(presetCycle.draftEnabled&&!presetCycle.enabled);
+ press(ORBIS_PAD_BUTTON_CROSS);assert(presetCycle.enabled&&!presetCycle.menuOpen&&!state.paused);
+ press(ORBIS_PAD_BUTTON_CROSS);assert(presetCycle.enabled&&presetCycle.draftEnabled&&presetCycle.menuOpen);press(ORBIS_PAD_BUTTON_UP);press(ORBIS_PAD_BUTTON_LEFT);press(ORBIS_PAD_BUTTON_CROSS);assert(!presetCycle.enabled&&!presetCycle.menuOpen);
+ press(ORBIS_PAD_BUTTON_CROSS);assert(!presetCycle.enabled&&!presetCycle.draftEnabled);press(ORBIS_PAD_BUTTON_CIRCLE);assert(!presetCycle.enabled&&!presetCycle.menuOpen);
+ puts("PASS actual controls including accurate Auto Off/On reopening, X apply, Circle cancel, volume/EQ, touch navigation, menus and playback");}

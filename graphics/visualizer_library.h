@@ -46,16 +46,19 @@ struct VisualizerLibrary {
   unsigned at=0;while(at<recentCount&&recent[at]!=k)++at;if(at==recentCount&&recentCount<recentCapacity)++recentCount;
   if(at>=recentCapacity)at=recentCapacity-1;for(unsigned i=at;i>0;--i)recent[i]=recent[i-1];recent[0]=k;touch(now);if(tab==2&&!searching)rebuild();
  }
- std::string encode()const{std::string out="HYPNOTIC_UI_1\nV\t"+std::to_string(tab)+"\nQ\t"+(renderHD?"1080":"288")+"\n";out+="U\t"+std::to_string(appearance.theme)+","+std::to_string(appearance.font)+","+std::to_string(appearance.hudSeconds)+","+std::to_string(appearance.sensitivity)+","+std::to_string(appearance.stats?1:0)+"\n";for(int t=0;t<tabCount;++t)if(!remembered[t].empty())out+="T"+std::to_string(t)+"\t"+remembered[t]+"\n";for(unsigned i=0;i<favoriteCount;++i)out+="F\t"+favorites[i]+"\n";for(unsigned i=0;i<recentCount;++i)out+="R\t"+recent[i]+"\n";return out;}
+ std::string encode()const{std::string out="HYPNOTIC_UI_1\nV\t"+std::to_string(tab)+"\nQ\t"+(renderHD?"1080":"288")+"\n";out+="U\t"+std::to_string(appearance.theme)+","+std::to_string(appearance.font)+","+std::to_string(appearance.hudSeconds)+","+std::to_string(appearance.sensitivity)+","+std::to_string(appearance.stats?1:0)+"\n";out+="S\t"+std::to_string(appearance.style)+","+std::to_string(appearance.style==0?appearance.font:appearance.styleFonts[0])+","+std::to_string(appearance.style==1?appearance.font:appearance.styleFonts[1])+"\n";const auto &a=appearance.audio;out+="A\t"+std::to_string(a.volume)+","+std::to_string(a.muted?1:0)+","+std::to_string(a.eqEnabled?1:0);for(int gain:a.bands)out+=","+std::to_string(gain);out+="\n";for(int t=0;t<tabCount;++t)if(!remembered[t].empty())out+="T"+std::to_string(t)+"\t"+remembered[t]+"\n";for(unsigned i=0;i<favoriteCount;++i)out+="F\t"+favorites[i]+"\n";for(unsigned i=0;i<recentCount;++i)out+="R\t"+recent[i]+"\n";return out;}
  bool decode(const std::string &text){if(text.empty()||text.back()!='\n'||text.size()>262144||text.compare(0,14,"HYPNOTIC_UI_1\n")!=0)return false;
-  appearance=UiSettings{};renderHD=true;favoriteCount=recentCount=0;for(auto &s:remembered)s.clear();size_t at=14;
+  appearance=UiSettings{};renderHD=true;favoriteCount=recentCount=0;for(auto &s:remembered)s.clear();bool hasStyle=false;size_t at=14;
   while(at<text.size()){size_t end=text.find('\n',at);if(end==std::string::npos)return false;size_t split=text.find('\t',at);if(split<end){auto tag=text.substr(at,split-at),value=text.substr(split+1,end-split-1);if(value.size()<=768&&value.find_first_of("\r\n\t")==std::string::npos){
-   if(tag=="U"){int theme,font,hud,sens,stats;char extra;if(sscanf(value.c_str(),"%d,%d,%d,%d,%d%c",&theme,&font,&hud,&sens,&stats,&extra)==5&&theme>=0&&theme<5&&font>=0&&font<3&&hud>=3&&hud<=15&&sens>=0&&sens<=6&&(stats==0||stats==1)){appearance.theme=theme;appearance.font=font;appearance.hudSeconds=hud;appearance.sensitivity=sens;appearance.stats=stats!=0;}}
+   if(tag=="U"){int theme,font,hud,sens,stats;char extra;if(sscanf(value.c_str(),"%d,%d,%d,%d,%d%c",&theme,&font,&hud,&sens,&stats,&extra)==5&&theme>=0&&theme<UiSettings::themeCount&&font>=0&&font<UiSettings::fontCount&&hud>=3&&hud<=15&&sens>=0&&sens<=6&&(stats==0||stats==1)){appearance.theme=theme;appearance.font=font;appearance.hudSeconds=hud;appearance.sensitivity=sens;appearance.stats=stats!=0;}}
+   else if(tag=="S"){int style,retro,modern;char extra;if(sscanf(value.c_str(),"%d,%d,%d%c",&style,&retro,&modern,&extra)==3&&style>=0&&style<2&&retro>=0&&retro<UiSettings::fontCount&&modern>=0&&modern<UiSettings::fontCount){appearance.style=style;appearance.styleFonts[0]=retro;appearance.styleFonts[1]=modern;hasStyle=true;}}
+   else if(tag=="A")appearance.audio.decode(value.c_str());
    else if(tag=="Q")renderHD=value=="1080";
    else if(tag=="V"){char *tail=nullptr;long n=strtol(value.c_str(),&tail,10);if(tail&&!*tail&&n>=0&&n<tabCount)tab=(int)n;}
    else if(tag=="F"||tag=="R"){auto *keys=tag=="F"?favorites:recent;unsigned &n=tag=="F"?favoriteCount:recentCount;unsigned cap=tag=="F"?capacity:recentCapacity;bool duplicate=false;for(unsigned i=0;i<n;++i)duplicate|=keys[i]==value;if(!duplicate&&!value.empty()&&n<cap)keys[n++]=value;}
    else if(tag.size()>1&&tag[0]=='T'){char *tail=nullptr;long n=strtol(tag.c_str()+1,&tail,10);if(tail&&!*tail&&n>=0&&n<tabCount)remembered[n]=value;}
   }}at=end+1;}
+  if(hasStyle)appearance.font=appearance.styleFonts[appearance.style];else appearance.styleFonts[0]=appearance.font;
   selection=0;searching=false;query.clear();rebuild();dirty=false;return true;
  }
 };

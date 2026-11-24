@@ -1,6 +1,8 @@
 #pragma once
 
 // Playback runs independently of the framebuffer loop. USB files are read-only.
+#include "audio_output_settings.h"
+void setAudioOutputSettings(const AudioOutputSettings &settings);
 void startUsbAudio();
 void pauseUsbAudio(bool paused);
 const char *usbAudioStatus();

@@ -1,6 +1,6 @@
 {
-  "snapshot": "0.77",
-  "receipt_source_files_checked": 129,
+  "snapshot": "0.84",
+  "receipt_source_files_checked": 142,
   "receipt_mismatches": [],
   "runtime_changes": "none; export-only common include/build paths relocated",
   "excluded": [
@@ -12,10 +12,11 @@
   ],
   "build_status": "Source snapshot; clean-checkout build blocked by documented dependencies",
   "license": "GPLv3 authorized by user; third-party exceptions retained",
-  "files": 234,
-  "content_bytes_excluding_manifests": 2746436,
+  "files": 257,
+  "content_bytes_excluding_manifests": 5778981,
   "manifest_excludes": [
     "docs/source-export-audit.json",
     "docs/source-files.json"
-  ]
+  ],
+  "publication_notes": "0.84 source and cumulative0.80-0.84changelog; README gallery preserved; font binaries and raster masks under OFL"
 }

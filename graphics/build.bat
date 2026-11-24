@@ -8,7 +8,7 @@ Rem Allow PkgTool (netcoreapp3.0) to use an installed newer runtime.
 set DOTNET_ROLL_FORWARD=Major
 
 set PKG_TITLE="HYPNOTIC"
-set PKG_VERSION="0.77"
+set PKG_VERSION="0.84"
 set PKG_ASSETS="assets"
 set PKG_TITLE_ID="HYPN00001"
 set PKG_CONTENT_ID="IV0000-HYPN00001_00-HYPNOTIC00000000"

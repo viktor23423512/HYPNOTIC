@@ -1,7 +1,17 @@
 #pragma once
 #include "status_text.h"
 #include "visualizer_library.h"
+#include "modern_ui.h"
 template<class Scene> void drawVisualizerLibrary(Scene *scene,const VisualizerLibrary &v,int active,const char *error){
+ if(currentUiSettings().style==1){
+  uiModernPanel(scene,"Visualizers",v.count?v.selection+1:0,v.count);int first=v.tab<3?3:v.tab;if(first>11)first=11;int x=128;
+  for(int t=0;t<6;++t){int id=t<3?t:first+t-3;x+=uiModernTab(scene,v.tabName(id),x,id==v.tab&&!v.searching);}
+  uiLabel(scene,"\x82  \x83",1792,214,24,Color{160,180,190},130,2);scene->DrawRectangle(128,280,1664,1,Color{27,45,55});
+  const int start=v.selection/6*6;for(int row=start;row<v.count&&row<start+6;++row){int y=302+(row-start)*60;bool selected=row==v.selection;if(selected){scene->DrawRectangle(116,y-2,1688,54,Color{0,55,72});scene->DrawRectangle(116,y+11,3,26,Color{0,200,230});}char number[16];snprintf(number,sizeof(number),"%02d",row+1);uiLabel(scene,number,143,y+9,21,selected?Color{0,200,230}:Color{119,144,161},50);uiLabel(scene,v.name(v.rows[row]),210,y+5,28,Color{160,180,190},1400);if(v.rows[row]==active)uiLabel(scene,"\x88",1665,y+13,24,Color{0,200,230},30);uiModernStar(scene,1757,y+25,v.favorite(v.rows[row]));}
+  if(!v.count)uiLabel(scene,v.searching?"No matching presets":v.tab==1?"Press R3 on a preset to add a favorite":v.tab==2?"Your recent visualizers will appear here":"No presets in this folder",128,345,26);
+  if(error&&*error)uiLabel(scene,error,128,661,20,Color{160,180,190},1600);else if(v.searching)uiLabel(scene,v.query.c_str(),128,661,20);
+  uiModernFooter(scene,"\x80\x81 Browse      \x82\x83 Category      X Apply      R3 Favorite      \x8e Search");return;
+ }
  scene->DrawRectangle(48,164,1824,636,Color{4,10,16});drawStatusText(scene,"HYPNOTIC / VISUALIZERS",194,72,45);
  char text[120];snprintf(text,sizeof(text),"%u / %u",v.count?v.selection+1:0,v.count);drawStatusText(scene,text,194,1620,12);
  int first=v.tab-2;if(first<0)first=0;if(first>VisualizerLibrary::tabCount-5)first=VisualizerLibrary::tabCount-5;

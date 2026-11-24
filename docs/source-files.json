@@ -10,6 +10,21 @@
     "sha256": "b534d50ddd1616f1279755c2d9644b2b5da9964e3853493d706f9e80ec0e04e3"
   },
   {
+    "path": "assets/licenses/fonts/AtkinsonHyperlegible-OFL.txt",
+    "bytes": 4352,
+    "sha256": "f32d22b3908fcad2c86a74000614ec22e6a7f66ea7e867e616026a27aebdc143"
+  },
+  {
+    "path": "assets/licenses/fonts/JetBrainsMono-OFL.txt",
+    "bytes": 4399,
+    "sha256": "a76abf002c49097d146e86740a3105a5d00450b1592e820a1109a8c5680cd697"
+  },
+  {
+    "path": "assets/licenses/fonts/Rajdhani-OFL.txt",
+    "bytes": 4373,
+    "sha256": "f62ef357d3a1c3d27edd35a6e1ba350e8a8d13499797964eeadefbf0b3b15d1f"
+  },
+  {
     "path": "assets/misc/AUDIO-LICENSES.txt",
     "bytes": 10923,
     "sha256": "15035e1a10d0e7ae06651615101904317a01859d59d408de16aa631cc872fd0f"
@@ -55,6 +70,11 @@
     "sha256": "b683f6ac88aab8a7855050ba1a856b462aeff3b7001752ffe6e666e195fce667"
   },
   {
+    "path": "CHANGELOG.md",
+    "bytes": 1895,
+    "sha256": "b70d31e2e7ffeb10c82b58b7855bc3305825774810c1279ab0da54fc1db2c7ce"
+  },
+  {
     "path": "common/graphics.cpp",
     "bytes": 8290,
     "sha256": "9c84ca9e9ef2c5ad8f7ae20b91031db6f83b0d6fe5dac4f4693869df76756ef7"
@@ -87,7 +107,12 @@
   {
     "path": "docs/BUILDING.md",
     "bytes": 2822,
-    "sha256": "620366421883d35463b66b08f9d993ee9f351587db44dcf82d691ac5a1c0f66a"
+    "sha256": "239acab364f0bc591ca0e5baae331304e0950bbef2fb07f5cdc9017d69f0e47d"
+  },
+  {
+    "path": "docs/CONTROLS.md",
+    "bytes": 4497,
+    "sha256": "85bf5bc66e408f9e70e43678e98e9d2e4323133cac65f68f4ec03af297051b8f"
   },
   {
     "path": "docs/preset-provenance.json",
@@ -95,14 +120,19 @@
     "sha256": "ecc22bfebbbd3e9f7127f779bde240c52e17044c5fe38943e0fd0b4b2711bd48"
   },
   {
+    "path": "graphics/app_settings_model.h",
+    "bytes": 2370,
+    "sha256": "6dc996d46b9b2fa1e1f364a144d99f350fb33f0f302f827af62e8ef39a97ba37"
+  },
+  {
     "path": "graphics/audio.cpp",
-    "bytes": 16680,
-    "sha256": "5d7495b42188b6bce42112186d3ad71b46f551843d1488f8d5bd3f96f7c8ba59"
+    "bytes": 17312,
+    "sha256": "882559cdf1449078549f2a65b78c0f0bbca574c9d8e73e283d81f423a96920a3"
   },
   {
     "path": "graphics/audio.h",
-    "bytes": 1336,
-    "sha256": "c03caef4a144feee5e60359709e4439c7184bb8da818b4ad687781034802ee8a"
+    "bytes": 1437,
+    "sha256": "b1d9c06ed404d3cbc27d3a97b630da5b7b73cf6cfa80aa78fd676a3eb83f7935"
   },
   {
     "path": "graphics/audio_decoder.cpp",
@@ -118,6 +148,16 @@
     "path": "graphics/audio_input_api.h",
     "bytes": 775,
     "sha256": "43335bcb833c1dd02aef8084b455f8258db30d8a86d7bbc36c2f928f08a92fd4"
+  },
+  {
+    "path": "graphics/audio_output_processor.h",
+    "bytes": 3359,
+    "sha256": "1c5a0269794392de6f3c78912f713a975a189707b7355bc1b8a0a7fb5d3dac4a"
+  },
+  {
+    "path": "graphics/audio_output_settings.h",
+    "bytes": 1167,
+    "sha256": "8482d47f94d9666e2373de0b348470e84b98e0f3db9cb9ddbead99787379b4de"
   },
   {
     "path": "graphics/audio_spectrum.h",
@@ -137,7 +177,7 @@
   {
     "path": "graphics/build.bat",
     "bytes": 6791,
-    "sha256": "e7a2bfe17171c78254ccc51d29f4651ec3dd02a6536dc44502ee9a1d565604fc"
+    "sha256": "17cddc383c98628aea2b2ea1e758c3dcf81c7d658cba1ad1b945bf69f79910b5"
   },
   {
     "path": "graphics/build_gpu_diagnostic.bat",
@@ -168,6 +208,41 @@
     "path": "graphics/filesystem_access.h",
     "bytes": 101,
     "sha256": "078a78263e5cf7e5de96a4f21b10bedaf43b9e2fa613d669851289e5da38aeb8"
+  },
+  {
+    "path": "graphics/fonts/AtkinsonHyperlegible-OFL.txt",
+    "bytes": 4352,
+    "sha256": "f32d22b3908fcad2c86a74000614ec22e6a7f66ea7e867e616026a27aebdc143"
+  },
+  {
+    "path": "graphics/fonts/AtkinsonHyperlegible.ttf",
+    "bytes": 54348,
+    "sha256": "7fb917c89019896d0b52ee84b7cbb3304c18cb90b19a62f5e32712bd23e97669"
+  },
+  {
+    "path": "graphics/fonts/JetBrainsMono-OFL.txt",
+    "bytes": 4399,
+    "sha256": "a76abf002c49097d146e86740a3105a5d00450b1592e820a1109a8c5680cd697"
+  },
+  {
+    "path": "graphics/fonts/JetBrainsMono.ttf",
+    "bytes": 270224,
+    "sha256": "e6fd0d7e91550b3ed2b735d4312474362c4716edc4fc0577a0f61ed782d5aed1"
+  },
+  {
+    "path": "graphics/fonts/Rajdhani-OFL.txt",
+    "bytes": 4373,
+    "sha256": "f62ef357d3a1c3d27edd35a6e1ba350e8a8d13499797964eeadefbf0b3b15d1f"
+  },
+  {
+    "path": "graphics/fonts/Rajdhani.ttf",
+    "bytes": 377860,
+    "sha256": "6e1fc228a8318251a6e569502ec57bac1e4656c582f92f59ccecc4688e039b98"
+  },
+  {
+    "path": "graphics/fonts/README.md",
+    "bytes": 641,
+    "sha256": "786c032e862c5e05b371d9b4a894b743752e571621d05df870f2b4262710f1da"
   },
   {
     "path": "graphics/fractal_bloom_model.h",
@@ -245,14 +320,19 @@
     "sha256": "4363b31407047686087a1aabfe6922b4bb061818827a5c18f2652ea5ef91eb00"
   },
   {
+    "path": "graphics/hud_icons.h",
+    "bytes": 4021,
+    "sha256": "cdbdd1d0ef6d051dbef2d7cc54a759226c61f69beb41edf7aea7e7c456b36853"
+  },
+  {
     "path": "graphics/hypnotic-link.x",
     "bytes": 2156,
     "sha256": "764887d04f0d648e3e708bf7344b46ddf2c03a65b3c85b3c7f8dce5601f0e8ac"
   },
   {
     "path": "graphics/main.cpp",
-    "bytes": 49364,
-    "sha256": "4923f7b095d8ee633314a73a5288ca4c127d9717ce96a5628ebe67db35f5dbdb"
+    "bytes": 52389,
+    "sha256": "f581fdf6df3fc46e218ebd9190e3df59978f04a1b6dc60f1093f02713830e473"
   },
   {
     "path": "graphics/matrix_eq_model.h",
@@ -350,14 +430,19 @@
     "sha256": "51eecaec3be13e03e578f97d2b27fbd8c4015269d0df5b16290265046053acb2"
   },
   {
+    "path": "graphics/modern_ui.h",
+    "bytes": 4701,
+    "sha256": "7ba9cad06f0a26eec9e32afa082b061d5f2cfcae673ef7eddfdd57dd53075279"
+  },
+  {
     "path": "graphics/music_folder_browser.h",
     "bytes": 2451,
     "sha256": "7f29592d826afaa362b0f2bb3d3e80d9e4a5a4aee1d54900c94c51657fd00eba"
   },
   {
     "path": "graphics/music_menu.h",
-    "bytes": 2864,
-    "sha256": "0263b3bb124638681cbc9d531dc95137e2243d295606c4db33d1c1caa0057a99"
+    "bytes": 4846,
+    "sha256": "e957320cf5a9277f041a76cfc48bbc49475b69fc6430dffa65a631fe1d5ebe83"
   },
   {
     "path": "graphics/music_navigation.h",
@@ -391,13 +476,13 @@
   },
   {
     "path": "graphics/player_hud.h",
-    "bytes": 4253,
-    "sha256": "389be4780fd8cf9038b26c8f2d40333281c15a17c76f3d11b669c0f008c02d72"
+    "bytes": 5279,
+    "sha256": "fda852337eee10e742763ee4b49461c3942f4d0a0c58707fc08297331667f9e0"
   },
   {
     "path": "graphics/preset_cycle.h",
-    "bytes": 980,
-    "sha256": "c696f23037f51e2dd429e738607cf5124cdaac2953e0a2c58903afda3c608ed8"
+    "bytes": 983,
+    "sha256": "0aa550a8b43db2bf85ea271d99c18ceca96aa0d63418694ad13a0d7d1b783d1f"
   },
   {
     "path": "graphics/radial_preset.h",
@@ -406,13 +491,13 @@
   },
   {
     "path": "graphics/settings_menu.h",
-    "bytes": 2658,
-    "sha256": "287f166e159c89cba7cd7194e466e4a591894a9bfac23cf804db66930f6c2cc8"
+    "bytes": 4679,
+    "sha256": "b66a962d0e144a4a7beddfc2e4410d875a9e57c7a048c6a5fec13ec7c89773d6"
   },
   {
     "path": "graphics/status_text.h",
-    "bytes": 4009,
-    "sha256": "62eb3eb9b4539dbbca542313e164b508623d3bfac6b2abc29f246cc75facc277"
+    "bytes": 4316,
+    "sha256": "99046e49ea8ae096f4805ba261810136494625ed07e8e032c213af1ff7cde7e2"
   },
   {
     "path": "graphics/storm_model.h",
@@ -490,6 +575,16 @@
     "sha256": "e2803cee4000d066d728fd2ac936febd680ed9511a8e20938509100eecf605d2"
   },
   {
+    "path": "graphics/ui_font.h",
+    "bytes": 1715,
+    "sha256": "396ee5af63c3a937ab48c81653d0fb1af2f477056afcfd87510f90deade97fb0"
+  },
+  {
+    "path": "graphics/ui_font_data.h",
+    "bytes": 2245085,
+    "sha256": "9a0c7ea802ada57c31ed41a5309e4964a63b3f3685a63df6d42e57e0b5143e2c"
+  },
+  {
     "path": "graphics/ui_preferences.cpp",
     "bytes": 1171,
     "sha256": "3900c9b0c41c6af53740a112e293e9a5dafcc6b8d2765ae96aef4e0f935491ee"
@@ -501,13 +596,13 @@
   },
   {
     "path": "graphics/ui_settings.h",
-    "bytes": 668,
-    "sha256": "265d42bb1a8e3c8fe2ec2436fbf762a2de950de47cd50ee8bcbdf7417cabd587"
+    "bytes": 1175,
+    "sha256": "6375079851cc883446ee7200bfbb2bb21631f5a4ef75ff753c6fda59b0e915d0"
   },
   {
     "path": "graphics/ui_style.h",
-    "bytes": 1193,
-    "sha256": "386df41a1cedd7b65746db98d23420b8741736bb877c8b6111a551f1984c738c"
+    "bytes": 3109,
+    "sha256": "4cbbe51d8b1da2ec558a5b08fda8ad44865ecdf3faa3f0d8c85023d055deb326"
   },
   {
     "path": "graphics/usb_folder_library.h",
@@ -521,13 +616,13 @@
   },
   {
     "path": "graphics/visualizer_library.h",
-    "bytes": 6454,
-    "sha256": "d0037e56f8db4d222c4800aee193e5fd1de3d3b6a8d3c5c178bbd1faf2c44df9"
+    "bytes": 7427,
+    "sha256": "b25b826a9709c5a352a00503f8900eb6dd3af2bc983b88a7cf3f7a183cb011a5"
   },
   {
     "path": "graphics/visualizer_menu.h",
-    "bytes": 2627,
-    "sha256": "613ee61829a6cb387183c3fd3ec975e9e9a58d58643ae6ce16a21ea52bdd4dc6"
+    "bytes": 4115,
+    "sha256": "00baf5b0741990495c178dd28ed7ae2f08249851c0c4c01b13a2310509f12c92"
   },
   {
     "path": "graphics/wormhole_preset.h",
@@ -546,13 +641,18 @@
   },
   {
     "path": "LICENSES/README.md",
-    "bytes": 1600,
-    "sha256": "e2724ef401559255f8457dedfbafd8e991bf69f8897f990d39dc8fadbc6a5d11"
+    "bytes": 1764,
+    "sha256": "554b74779943cdb5a322a610c4c528f8c07b59545e920f453eca2fcfa7d030c1"
   },
   {
     "path": "patches/psbc-orbis.patch",
     "bytes": 14739,
     "sha256": "714aa5905ec84c40473f539633146a1151ece213c71ebb9240f9cc4c261dadbd"
+  },
+  {
+    "path": "README.md",
+    "bytes": 3692,
+    "sha256": "d3534edba032accff3d9a3ddd35eddc3cb32d0a792cd173fb6ddf0e90eb4d1a1"
   },
   {
     "path": "sce_sys/icon0.png",
@@ -910,6 +1010,11 @@
     "sha256": "6df092c10b14ec01299a98b35ffef58a2aa37ad95dcc2db9f5f97c89bb816bc7"
   },
   {
+    "path": "tests/milkdrop_ps4/player_bridge/audio-output-test.cpp",
+    "bytes": 2841,
+    "sha256": "08a428274a45fcc133a993e055f49c140cadad8176c787df9ed2f3280d403d35"
+  },
+  {
     "path": "tests/milkdrop_ps4/player_bridge/backend.cpp",
     "bytes": 6888,
     "sha256": "2438cd375d89634ddb8dfe163fdea4f226fc5a5416482d81e5b7edfc3216113a"
@@ -926,8 +1031,8 @@
   },
   {
     "path": "tests/milkdrop_ps4/player_bridge/controls-routing-test.cpp",
-    "bytes": 25128,
-    "sha256": "967b15edf252c6feda0c456d8263634ac6b5ebfc3ca46c2c55160400a16ba99a"
+    "bytes": 30571,
+    "sha256": "aae6138ca5fe303d530ff51215251d62628c111a542216a8539767316481bba2"
   },
   {
     "path": "tests/milkdrop_ps4/player_bridge/cube-orbit-test.cpp",
@@ -958,6 +1063,11 @@
     "path": "tests/milkdrop_ps4/player_bridge/hd-copy-test.cpp",
     "bytes": 1098,
     "sha256": "b78135f397289cab70807589e5a855921dc3aa72c19ebddea103c2a3851a5023"
+  },
+  {
+    "path": "tests/milkdrop_ps4/player_bridge/hud-label-test.cpp",
+    "bytes": 1936,
+    "sha256": "4f87785061d702576659a0e3898a46b719a122ee6a5bc7700db29a4bf5d6991f"
   },
   {
     "path": "tests/milkdrop_ps4/player_bridge/music-folders-test.cpp",
@@ -1066,8 +1176,8 @@
   },
   {
     "path": "tests/milkdrop_ps4/player_bridge/preset-cycle-timer-test.cpp",
-    "bytes": 1332,
-    "sha256": "825c9edf178a6d927441444dd5a531944b799d33b2f2e8dfdbc7fad05ba86a4b"
+    "bytes": 1511,
+    "sha256": "7edbd4dfd1d6ec115a3e6a24f01a922f8fdd27381176ece74a8bafea8393cea1"
   },
   {
     "path": "tests/milkdrop_ps4/player_bridge/projectm_parser_file_io.cpp",
@@ -1096,8 +1206,8 @@
   },
   {
     "path": "tests/milkdrop_ps4/player_bridge/ui-settings-test.cpp",
-    "bytes": 1050,
-    "sha256": "45da80c77763402d96dc93e4353d9ffb1c898e17158a30f9ebf615535a7192e0"
+    "bytes": 2438,
+    "sha256": "2f030ef1d1bb9bc71664b340d9a17ef882fab7ad64c2b0c66ba22ca86ffb6bac"
   },
   {
     "path": "tests/milkdrop_ps4/player_bridge/uniforms-original-under-test.hpp",
@@ -1153,6 +1263,11 @@
     "path": "tools/generate_katakana.ps1",
     "bytes": 2158,
     "sha256": "a20362a4c3e06c31013462ed9998d30b7e06e964dd4b01c05ed46f11c683a6e6"
+  },
+  {
+    "path": "tools/generate_ui_fonts.py",
+    "bytes": 4790,
+    "sha256": "bc022d87224e85a802500eb076c084200a7f2c6953f1aa95ef3ba19fcb54f837"
   },
   {
     "path": "tools/update_milkdrop_assets.py",

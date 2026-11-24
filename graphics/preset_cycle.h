@@ -4,7 +4,7 @@ struct PresetCycleTimer {
  bool enabled=false,menuOpen=false,draftEnabled=false,active=false;unsigned seconds=30,draftSeconds=30;int row=1;
  uint64_t elapsed=0,last=0;
  void reset(){elapsed=last=0;active=false;}
- void begin(){menuOpen=true;draftEnabled=true;draftSeconds=seconds;row=1;}
+ void begin(){menuOpen=true;draftEnabled=enabled;draftSeconds=seconds;row=1;}
  void move(int direction){row=direction<0?0:1;}
  void adjust(int direction){if(!row){draftEnabled=!draftEnabled;return;}int n=(int)draftSeconds+(direction<0?-5:5);draftSeconds=n<5?5:n>600?600:n;}
  void apply(){enabled=draftEnabled;seconds=draftSeconds;menuOpen=false;reset();}

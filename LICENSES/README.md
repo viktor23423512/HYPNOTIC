@@ -8,6 +8,7 @@ HYPNOTIC-owned code in this source snapshot is released under GNU GPL version 3 
 - OpenGNM, PSBC/Mesa, glslang and HLSLParser: upstream/per-file terms; assets/misc/THIRD_PARTY_NOTICES.txt and the pinned source repositories.
 - dr_libs/stb: original notices retained in graphics/third_party and assets/misc/AUDIO-LICENSES.txt.
 - Noto Sans JP Katakana masks: SIL OFL 1.1; graphics/third_party/NotoSansJP-OFL.txt. No font installer is bundled.
+- Atkinson Hyperlegible, JetBrains Mono and Rajdhani font files and derived glyph masks: SIL OFL 1.1; see graphics/fonts and assets/licenses/fonts.
 - Community MilkDrop presets and textures are separately copyrighted. The GPL license does not grant rights to them. Preset files are omitted from this source upload; provenance identifies the originals.
 
 ## Unresolved external dependency: libjbc

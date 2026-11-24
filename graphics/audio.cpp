@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include "playback_position.h"
 #include "pause_fade.h"
+#include "audio_output_processor.h"
 #include "filesystem_access.h"
 #include <atomic>
 #include <ctype.h>
@@ -23,6 +24,8 @@
 enum AudioStatus { Ready, Scanning, NoUsb, NoWav, Unsupported, Playing, Finished, ReadError, OutputError, ThreadError };
 static std::atomic<int> status{Scanning};
 static std::atomic<bool> paused{false};
+static std::atomic<uint64_t> outputControls{AudioOutputSettings{}.packed()};
+void setAudioOutputSettings(const AudioOutputSettings &settings){outputControls.store(settings.packed(),std::memory_order_relaxed);}
 static TrackLibrary library;
 static UsbFolderLibrary folders;
 static std::atomic<bool> libraryReady{false};
@@ -159,7 +162,8 @@ static void *audioThread(void *)
     if (!scanTracks()) { if(port>=0) sceAudioOutClose(port); return NULL; }
     const unsigned framesPerBlock = 1024;
     if (port < 0) { status.store(OutputError); return NULL; }
-    alignas(16) int16_t samples[framesPerBlock * 2];
+    alignas(16) int16_t samples[framesPerBlock * 2],outputSamples[framesPerBlock * 2];
+    AudioOutputProcessor outputProcessor;
     StereoPcmResampler resampler;
     TrackSequence sequence;sequence.random=(unsigned)sceKernelGetProcessTime()|1u;int automaticTrack=-1;
     for (;;)
@@ -184,7 +188,7 @@ static void *audioThread(void *)
         { status.store(ReadError); continue; }
         activeTrack.store(selected);sequence.prepare(library,selected,shuffleMode.load());
         printf("HYPNOTIC TRANSPORT TRACK %d SHUFFLE %u REPEAT %d PAUSED %u\n",selected,shuffleMode.load(),repeatMode.load(),paused.load());
-        spectrumAnalyzer.reset(); publishSpectrum(AudioSpectrum{});publishScope(nullptr,0);
+        spectrumAnalyzer.reset(); publishSpectrum(AudioSpectrum{});publishScope(nullptr,0);outputProcessor.resetFilters();
         trackRate.store(decoder.sampleRate);trackFormat.store(formatIndex(decoder.format()));
         const uint64_t length = resampler.length();
         uint64_t cursor = 0;
@@ -208,7 +212,7 @@ static void *audioThread(void *)
             const int64_t seekMs = requestedSeek.exchange(0);
             if (seekMs)
             {
-                spectrumAnalyzer.reset(); publishSpectrum(AudioSpectrum{});publishScope(nullptr,0);
+                spectrumAnalyzer.reset(); publishSpectrum(AudioSpectrum{});publishScope(nullptr,0);outputProcessor.resetFilters();
                 // Drain queued sound before discarding decoder/resampler state.
                 if (outputAudio(port, NULL) < 0) { status.store(OutputError); break; }
                 const uint64_t target = seekTargetFrameMs(cursor, length, seekMs);
@@ -237,7 +241,10 @@ static void *audioThread(void *)
             { status.store(ReadError); break; }
             remaining -= count;
             fade.apply(samples, count, !wantsPause);
-            if (outputAudio(port, samples) < 0)
+            memcpy(outputSamples,samples,sizeof(samples));
+            outputProcessor.configure(AudioOutputSettings::unpack(outputControls.load(std::memory_order_relaxed)));
+            outputProcessor.process(outputSamples,framesPerBlock);
+            if (outputAudio(port, outputSamples) < 0)
             { status.store(OutputError); break; }
             AudioWaveform wave;
             waveformFromStereo(samples, count, wave);

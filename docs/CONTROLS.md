@@ -15,7 +15,7 @@
 
 Hold the D-pad to repeat scrolling. Browsing never starts a track or preset until X is pressed.
 
-In search: X types a character or activates Search; Square deletes; Triangle clears; Circle cancels; OPTIONS submits.
+In search: X types a character or activates Search; Square deletes; Triangle clears; Circle cancels; OPTIONS opens Settings.
 
 ## Viewing a visualizer
 
@@ -25,10 +25,10 @@ In search: X types a character or activates Search; Square deletes; Triangle cle
 - L1/R1 cycles built-ins or MilkDrop presets in the current category.
 - L2/R2 scrubs through the current track; stronger trigger pressure moves faster.
 - X pauses/resumes when Play/Pause is selected in the HUD. With another HUD button selected, X activates that button.
-- While the HUD is visible, left/right selects Shuffle, Repeat, Previous, Play/Pause, Next, or AUTO.
+- While the HUD is visible, left/right selects Shuffle, Repeat, Previous, Play/Pause, Next, AUTO, or Volume.
 - L3 pins/unpins the HUD. Normally it hides after five seconds without input during playback and stays visible while paused.
 - Shuffle uses the current track's folder; Repeat cycles Off / All / One.
-- AUTO opens the interval menu; X applies and Circle cancels.
+- AUTO opens the interval menu with its current On/Off state; X applies and Circle cancels.
 
 ## Built-in settings
 
@@ -50,4 +50,22 @@ Square while viewing in debug selects 1080p or the original lower-resolution mod
 
 ## Microphone
 
-Square in Music switches to Mic Mode for visualization. Settings → Mic Test opens the input meter and diagnostic values. Normal microphone visualization hides microphone diagnostics. Input is captured for visualization without recording or speaker monitoring.
+Square in Music switches to Mic Mode for visualization. Settings → Misc → Mic Test opens the input meter and diagnostic values. Normal microphone visualization hides microphone diagnostics. Input is captured for visualization without recording or speaker monitoring.
+
+## Volume and equalizer
+
+- Select Volume on the playback HUD and press X. Up/Down adjusts by 5%, Circle mutes/unmutes, and X closes. The percentage appears above the vertical slider.
+- Settings → Music → Equalizer: Left/Right selects a band, Up/Down adjusts −12 to +12 dB, Square resets Flat, Triangle toggles EQ, and Circle returns.
+- The five bands are 60 Hz, 250 Hz, 1 kHz, 4 kHz and 12 kHz. Volume, mute and EQ save automatically and affect playback audio independently of visualizer sensitivity.
+
+## Settings tabs
+
+L1/R1 switches tabs, Up/Down selects a row, and Left/Right adjusts values.
+
+- Music: Volume and Equalizer.
+- Visualizers: Sensitivity and MilkDrop quality.
+- Theme: Interface style, Colour and Font.
+- Misc: HUD auto-hide, FPS/temperature, Debug comparison, Mic test and Credits.
+
+Shuffle, Repeat and Auto use grey icons when Off and the selected theme accent when On. Repeat One displays a small 1. Selecting a control highlights it independently of its On/Off state.
+
