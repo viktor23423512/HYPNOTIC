@@ -21,7 +21,7 @@ Short desktop projectM previews of included MilkDrop presets. PS4 appearance and
 
 [Download releases](https://github.com/viktor23423512/HYPNOTIC/releases)
 
-[0.79](https://github.com/viktor23423512/HYPNOTIC/releases/tag/v0.79) · [0.77](https://github.com/viktor23423512/HYPNOTIC/releases/tag/v0.77) · [0.76](https://github.com/viktor23423512/HYPNOTIC/releases/tag/v0.76)
+[0.84](https://github.com/viktor23423512/HYPNOTIC/releases/tag/v0.84) · [0.79](https://github.com/viktor23423512/HYPNOTIC/releases/tag/v0.79) · [0.77](https://github.com/viktor23423512/HYPNOTIC/releases/tag/v0.77) · [0.76](https://github.com/viktor23423512/HYPNOTIC/releases/tag/v0.76)
 
 Development pre-releases. Download the `.pkg` from the release’s Assets section. Close HYPNOTIC before installing an update.
 
@@ -40,7 +40,7 @@ The 0.84 development source is published under [GPLv3](LICENSE), with [separate 
 
 [Browse the player source](graphics/) · [Download source ZIP](https://github.com/viktor23423512/HYPNOTIC/archive/refs/heads/main.zip)
 
-Current source: **0.84**. Latest packaged release: **0.79**. See the [changelog](CHANGELOG.md) for changes in builds 0.80–0.84. Earlier release tags may predate their matching source publication; use the source asset attached to a release when provided.
+Current source: **0.84**. Latest packaged release: **0.84**. See the [changelog](CHANGELOG.md) for changes in builds 0.80–0.84. Earlier release tags may predate their matching source publication; use the source asset attached to a release when provided.
 
 Start with [build notes](docs/BUILDING.md) and [pinned dependencies](source-dependencies.json). This is a source snapshot; a clean-checkout build is not yet validated. The libjbc dependency is omitted pending license clarification, and toolchain binaries, sample music and community preset files are not included.
 
